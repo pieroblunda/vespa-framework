@@ -1,0 +1,17 @@
+section(ng-controller="exampleController")
+  .row
+    .col
+      p Last element Added:
+    .col
+      button(ng-click="setterExample()") Insert
+  .row
+    .col
+      table.table
+        tr
+          th ID
+          th name
+          th date
+        tr(ng-repeat="item in examples")
+          td {{$index}}
+          td {{item.foo}}
+          td {{item.bar}}

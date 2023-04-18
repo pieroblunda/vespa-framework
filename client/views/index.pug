@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="Description" content="Put your description here.")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    include styles.pug
+    title MeanivanJs!
+  body(data-ng-app="App" ng-controller="landingController")
+    .container-fluid
+      .jumbotron.jumbotron-fluid
+        .container
+          h1.display-4 {{Landing.title}}
+          p.lead {{Landing.paragraph}}
+      
+      include example.pug
+
+    include scripts.pug
