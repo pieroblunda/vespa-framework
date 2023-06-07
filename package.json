@@ -13,7 +13,7 @@
     "debug": "node --inspect-brk app.js",
     "simulate": "node scripts/browser.js",
     "stress": "k6 run server/models/k6.model.js",
-    "build": "node -r dotenv/config scripts/build.js",
+    "build": "npm install && node app.js",
     "qr": "node app.js nextquotidiano --qr",
     "prod": "NODE_ENV=production node app.js",
     "deploy": "node app.js"
