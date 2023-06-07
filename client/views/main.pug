@@ -1,0 +1,24 @@
+//- include mixin.header.section.pug
+//- include mixin.ui.upload.pug
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    include styles.pug
+  
+  body(data-page=`${page}` data-available-langs="es" data-code=`${partnerData.code}`)
+    
+    header
+      section#logoContainer.logo
+      section.main
+        //- button#btnSave Salva
+    
+    main
+      include sidebar.pug
+        
+      //- Main
+      block content
+  
+  include scripts.pug

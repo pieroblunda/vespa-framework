@@ -1,0 +1,8 @@
+{
+  "testEnvironment": "jest-environment-node",
+  "transform": {},
+  "testTimeout": 12000,
+  "globals": {
+    "CLIENT_PATH": "client"
+  }
+}

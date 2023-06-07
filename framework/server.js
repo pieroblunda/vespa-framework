@@ -52,7 +52,7 @@ export function init(envDotFile) {
         console.log(`${colors.green('✓')} ${key}: ${process.env[key]}`);
       });*/
       
-      process.env.BASE_URL = `${protocol}://${Meanivan.getLocalhostIP()}:${process.env.PORT}`;
+      process.env.BASE_URL = `${protocol}://localhost:${process.env.PORT}`;
       console.log(colors.green('\nVisit:         ' + process.env.BASE_URL + '\n'));
       
       // Print QR
