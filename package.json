@@ -13,7 +13,8 @@
     "debug": "node --inspect-brk app.js",
     "simulate": "node scripts/browser.js",
     "stress": "k6 run server/models/k6.model.js",
-    "web": "npm install && node app.js",
+    "build": "node -r dotenv/config scripts/build.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "qr": "node app.js nextquotidiano --qr",
     "prod": "NODE_ENV=production node app.js",
     "deploy": "node app.js"
@@ -86,5 +87,8 @@
     "validate-js": "^2.0.1",
     "wordpress": "^1.4.1",
     "wpapi": "^1.2.2"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
