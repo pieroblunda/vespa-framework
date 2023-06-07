@@ -16,7 +16,7 @@
     "build": "node -r dotenv/config scripts/build.js",
     "qr": "node app.js nextquotidiano --qr",
     "prod": "NODE_ENV=production node app.js",
-    "newPartner": "node scripts/nexilia-cli.js"
+    "deploy": "node app.js",
   },
   "bin": {
     "meanivan": ".framework/meanivan-cli/cli.js"
