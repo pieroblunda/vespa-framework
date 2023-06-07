@@ -1,35 +1,27 @@
-'use strict';
 import fs from 'fs';
 import stylus from 'stylus';
-/* @ToDo: [1] Move this file inside framework/server/middleware */
-/* @ToDo: [1] this middleware it be runned many times */
+import colors from 'colors';
+import Meanivan from '../../framework/meanivan.js';
 
 export default function(req, res, next) {
   
-  if(req.originalUrl.includes('/api')){
+  // Production mode
+  if(process.env.NODE_ENV === 'production'){
     next();
     return;
   }
   
-  console.log('Compiling Stylus...');
-  console.log(req.originalUrl);
-  let options = {
-    src: process.env.BASE_PATH + '/client/styles/main.styl',
-    dest: process.env.BASE_PATH + '/public/css/styles.css',
-    paths:[
-      process.env.BASE_PATH + '/client/styles/**',
-    ]
-  };
+  // Compile stylus in Dev mode
+  let input = [{
+    src: `client/styles/app.styl`,
+    dest: `${process.env.PUBLIC_PATH}/css/app.min.css`
+  }];
   
-  let fileStr = fs.readFileSync(options.src, "utf8");
-  stylus(fileStr)
-  .set('paths', options.paths)
-  .set('compress', true)
-  .render(function(err, css){
-    fs.writeFile(options.dest, css, function (err) {
-      if (err) return console.log(err);
-      console.log('Compiled:  See the output at ' + options.dest);
+  Meanivan.compileStylus(input).then(function(filesGenerated){
+    filesGenerated.forEach((file, i) => {
+      console.log(colors.grey('compiled ') + `${file.srcFile} ➞ ${file.outputFile}`);
     });
+    
+    next();
   });
-  next();
 }

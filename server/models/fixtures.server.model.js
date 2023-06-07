@@ -1,16 +1,22 @@
-'use strict';
-import db from './../../framework/dbclient.js';
+import DB from './db.server.model.js';
 
 class Fixtures {
-
-  static run() {
-    // Insert in DB
-    db.collection('example').insertOne({
-      foo: 'bar',
-      date: new Date()
-    }); // update
+  
+  static getData(dataset, query){
+    
   }
-
-};
+  
+  static setData(dataset, document){
+    // Set data 
+  }
+  
+  static run() {
+    console.log('Fixtures run');
+    // DB.collection('category').getById('64400cb950b1584d6eb65540').then( (category) => {
+    //   console.log(category);
+    // });
+  } // Run
+  
+}
 
 export default Fixtures;

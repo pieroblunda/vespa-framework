@@ -1,6 +1,11 @@
-import * as server from './framework/server.js';
 import dotenv from 'dotenv';
+import Meanivan from './framework/meanivan.js';
+import * as server from './framework/server.js'
 
-let conf = dotenv.config();
+let envDotFile = dotenv.config();
 
-server.init();
+process.unhandledRejections = 'strict';
+Meanivan.setGlobals();
+
+server.init(envDotFile.parsed);
+
