@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import * as server from './framework/server.js'
 
-let envDotFile = dotenv.config();
+// let envDotFile = dotenv.config();
 
 process.unhandledRejections = 'strict';
 
