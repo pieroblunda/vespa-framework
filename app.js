@@ -5,5 +5,5 @@ import * as server from './framework/server.js'
 
 process.unhandledRejections = 'strict';
 
-server.init(envDotFile.parsed);
+server.init();
 

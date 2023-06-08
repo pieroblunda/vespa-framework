@@ -12,7 +12,7 @@ import Fixtures from '../server/models/fixtures.server.model.js';
 import Meanivan from './meanivan.js';
 import * as routes from '../server/routes.js';
 
-export function init(envDotFile) {
+export function init() {
   
   return new Promise( (resolve, reject) => {
   
