@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node app.js",
     "debug": "node --inspect-brk app.js",
-    "build": "node -r dotenv/config scripts/heroku-build.js",
+    "build": "node scripts/heroku-build.js",
     "heroku-postbuild": "npm run build",
     "prod": "NODE_ENV=production node app.js",
     "deploy": "node app.js"
