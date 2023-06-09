@@ -8,13 +8,7 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
     include styles.pug
   
-  body(data-page=`${page}` data-available-langs="es" data-code=`${partnerData.code}`)
-    
-    header
-      section#logoContainer.logo
-      section.main
-        //- button#btnSave Salva
-    
+  body
     main
       //- Main
       block content

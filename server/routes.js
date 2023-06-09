@@ -2,6 +2,7 @@
 import Express from 'express';
 import Cors from 'cors';
 import BodyParser from 'body-parser';
+import CompileStylusMiddleware from '../server/middlewares/compile-stylus.js';
 import * as DashboardController from '../server/controllers/dashboard.server.controller.js';
 
 
@@ -12,7 +13,7 @@ class Routes {
     
     
     app.get('/',
-    // compileStylusMiddleware,
+    CompileStylusMiddleware,
     DashboardController.renderDashboard);
     
     // Any other case
