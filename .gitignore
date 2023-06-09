@@ -1,6 +1,7 @@
 node_modules
 mongod.bat
 .env
+.env.prod
 .nexilia-cache/**/*
 !.nexilia-cache/*.gitkeep
 !.nexilia-cache/_wegirls/*.gitkeep

@@ -10,11 +10,11 @@
     "debug": "node --inspect-brk app.js",
     "build": "node scripts/heroku-build.js",
     "heroku-postbuild": "npm run build",
-    "prod": "NODE_ENV=production node app.js",
-    "deploy": "node app.js"
+    "prod": "heroku local -e .env.prod"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.13.3",
@@ -23,5 +23,8 @@
   "engines": {
     "node": "14.x",
     "npm": "7.x"
+  },
+  "devDependencies": {
+    "technical-debt-cli": "^2.2.0"
   }
 }
