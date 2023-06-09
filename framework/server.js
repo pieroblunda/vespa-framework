@@ -1,8 +1,9 @@
 'use strict';
-import TodoCli from 'technical-debt-cli';
 import Framework from '../framework/framework.js';
 import DbClient from './dbclient.js';
 import Routes from '../server/routes.js';
+let TodoCli = await import('technical-debt-cli'); // Dynamic import
+TodoCli = TodoCli.default;
 
 class Server {
   
