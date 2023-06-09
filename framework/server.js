@@ -1,16 +1,17 @@
 'use strict';
 import Framework from '../framework/framework.js';
 import DbClient from './dbclient.js';
+import DotEnv from 'dotenv';
 import Routes from '../server/routes.js';
 
 class Server {
   
   static async init() {
-    
     console.log('=============================================================');
     console.log('Starting server');
     console.log('=============================================================');
-    
+    Framework.createEnvFile();
+    DotEnv.config();
     Framework.setGlobalsVariables();
     let app = Routes.init();
     

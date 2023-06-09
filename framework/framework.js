@@ -13,7 +13,7 @@ class Framework {
     global.PUBLIC_PATH = global.BASE_PATH + '/public';
   }
   
-  static compileStylus(){
+  static compileStylus() {
     
     let input = [{
       src: `client/styles/app.styl`,
@@ -62,6 +62,20 @@ class Framework {
     
     return Promise.all(promisesBag);
   } // compileStylus()
+  
+  static createEnvFile(){
+    return new Promise(function(resolve, reject) {
+      const path = process.cwd() + '/.env';
+      // Check if the file exists in the current directory.
+      try {
+        Fs.accessSync( path, Fs.constants.F_OK);
+        console.log(Colors.green('✓') + ' Environment file .env detected');
+      } catch (e) {
+        Fs.copyFileSync('.env-template', '.env', Fs.constants.COPYFILE_EXCL);
+        console.log(Colors.green('✓') + ' CHECK THE .env DEFAULTS OPTIONS', Colors.yellow('<==============='));
+      }
+    });
+  } //createEnvFile()
   
 }
 
