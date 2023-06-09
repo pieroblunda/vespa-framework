@@ -9,7 +9,7 @@
     "start": "node app.js",
     "debug": "node --inspect-brk app.js",
     "build": "node -r dotenv/config scripts/build.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
+    "heroku-postbuild": "npm run build",
     "prod": "NODE_ENV=production node app.js",
     "deploy": "node app.js"
   },
