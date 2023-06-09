@@ -1,4 +1,6 @@
 
 export function renderDashboard(req, res) {
-  res.json({foo: 'bar'});
+  res.render('content', {
+    name: 'Piero'
+  })
 };
