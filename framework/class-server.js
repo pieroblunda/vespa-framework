@@ -1,5 +1,4 @@
 'use strict';
-import * as routes from '../server/routes.js';
 
 import express from 'express';
 
