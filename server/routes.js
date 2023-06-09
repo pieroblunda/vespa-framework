@@ -1,58 +1,60 @@
 'use strict';
-import stylus from 'stylus';
-import errorHandler from '../server/middlewares/error-handler.js';
-import express from 'express';
-import bodyParser from 'body-parser';
+import Express from 'express';
 import Cors from 'cors';
-import * as dashboardController from './controllers/dashboard.server.controller.js';
-import compileStylusMiddleware from '../server/middlewares/compile-stylus.js';
-//- @CLI-routes-ctrlImport
+import BodyParser from 'body-parser';
+import * as DashboardController from '../server/controllers/dashboard.server.controller.js';
 
-let app = express();
 
-export function init() {
+class Routes {
   
-  app = config(app);
+  static init() {
+    let app = this.config(Express());
+    
+    
+    app.get('/',
+    // compileStylusMiddleware,
+    DashboardController.renderDashboard);
+    
+    // Any other case
+    app.use(this.defaultRoute);
+    
+    return app;
+  }
   
-  app.use(bodyParser.json());
-  app.use(Cors());
+  static config(app) {
+    // App Config
+    app.set('json spaces', 0);
+    app.set('view engine', 'pug');
+    app.set('views', global.VIEWS_PATH);
+    
+    // Pretty HTML on dev env
+    app.locals.pretty = process.env.NODE_ENV === 'development';
+    
+    app.use(BodyParser.json());
+    app.use(Cors());
+    
+    // Routes config
+    app.use('/api/', Express.json());
+    app.use('/public', Express.static(global.BASE_PATH + '/public'));
+
+    app.use(this.errorHandler);
+    
+    return app;  
+  }
   
-  app.get('/',
-  compileStylusMiddleware,
-  dashboardController.renderDashboard);
-  app.get('/dashboard', dashboardController.renderDashboard);
+  static errorHandler (error, req, res, next) {
+    console.log('errorHandler');
+    return res.status(500).json({
+      error: error.toString()
+    });
+  }
   
-  // Any other case
-  app.use(
-  function(req, res) {
+  static defaultRoute (req, res) {
     res.render('block-404', {
       isErrorPage: true
     });
-  });
-  
-  return app;
-
-};
-
-function config(app){
-  // App Config
-  app.set('view engine', 'pug');
-  app.set('views', process.env.VIEWS_PATH);
-  app.set('json spaces', 0);
-  
-  // Pretty HTML on dev env
-  app.locals.pretty = process.env.NODE_ENV === 'development' ? true : false;
-  
-  // Routes config
-  app.use('/api/', express.json());
-  app.use('/public', express.static(process.env.BASE_PATH + '/public'));
-  
-  // Para usar los sourcemaps durante el desarrollo
-  if (process.env.NODE_ENV === 'development') {
-    app.use('/client', express.static(process.env.BASE_PATH + '/client'));
   }
-
-  app.use(errorHandler);
   
-  return app;
 }
+
+export default Routes;

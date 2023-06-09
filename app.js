@@ -1,4 +1,4 @@
-import Server from './framework/class-server.js';
+import Server from './framework/server.js';
 Server.init();
 /*
 import dotenv from 'dotenv';

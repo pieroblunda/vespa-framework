@@ -13,11 +13,9 @@
     "prod": "NODE_ENV=production node app.js",
     "deploy": "node app.js"
   },
-  "bin": {
-    "meanivan": ".framework/meanivan-cli/cli.js"
-  },
-  "devDependencies": {},
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.13.3"
   },
   "engines": {
