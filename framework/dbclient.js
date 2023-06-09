@@ -5,49 +5,32 @@ class DbClient {
   db;
   client;
   
-  static async connect2(mongoURI) {
-    this.client = await MongoClient.connect(mongoURI, {
+  /* @ToDo: [1] This is a connection for MongoDb 3.6 client  */
+  static async connect(mongoURI) {
+    console.log(mongoURI);
+    let dbOptions = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    });
-    this.db = await this.client.db();
-    return this.db;
-  }
-  
-  static connect() {
-    let url = 'mongodb://localhost:27017';
+    };
     
-    if (process.env.CONNECTION_STRING){
-      url = process.env.CONNECTION_STRING;
+    try {
+      this.client = await MongoClient.connect(mongoURI, dbOptions);
+    } catch (e) {
+      console.log(e);
+      console.log('DB connection error');
+      return Promise.reject('Unable to connet to DB');
     }
     
-    return new Promise( (resolve, reject) => {
-      MongoClient.connect(url, {useNewUrlParser:true, useUnifiedTopology: true}, (err, client) => {
-        if(err) {
-          reject('Unable to connet to DB');
-          return;
-        }
-        
-        this.db = client.db(process.env.DB_NAME);
-        this.client = client;
-        
-        if(process.env.NODE_ENV === 'development'){
-          console.log('Connected successfully!!!');
-        }
-        
-        resolve();
-      });
-    });
+    console.log('Client connected to DB');
+    
+    this.db = await this.client.db();
+    return this.db;
   }
   
   static closeConnection() {
     return this.client.close();
   }
   
-  /* @ToDo: Esto es un parche porque no se exportar DbClient.db */
-  static collection(collectionName) {
-    return this.db.collection(collectionName);
-  }
 }
 
 export default DbClient;
