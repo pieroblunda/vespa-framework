@@ -1,1 +1,0 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"tienda.variant"}],"uuid":"7db2f91f1048466e8354f3fb3da12d23","collectionName":"variant","type":"collection"}
