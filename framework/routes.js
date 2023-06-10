@@ -2,27 +2,12 @@
 import Express from 'express';
 import Cors from 'cors';
 import BodyParser from 'body-parser';
-import CompileStylusMiddleware from '../server/middlewares/compile-stylus.js';
-import * as DashboardController from '../server/controllers/dashboard.server.controller.js';
-
 
 class Routes {
   
   static init() {
-    let app = this.config(Express());
+    let app = Express();
     
-    
-    app.get('/',
-    CompileStylusMiddleware,
-    DashboardController.renderDashboard);
-    
-    // Any other case
-    app.use(this.defaultRoute);
-    
-    return app;
-  }
-  
-  static config(app) {
     // App Config
     app.set('json spaces', 0);
     app.set('view engine', 'pug');
@@ -40,7 +25,7 @@ class Routes {
 
     app.use(this.errorHandler);
     
-    return app;  
+    this.app = app;
   }
   
   static errorHandler (error, req, res, next) {

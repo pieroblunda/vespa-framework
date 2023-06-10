@@ -1,26 +1,27 @@
 'use strict';
-import Framework from '../framework/framework.js';
-import DbClient from './dbclient.js';
 import DotEnv from 'dotenv';
-import Routes from '../server/routes.js';
+import Framework from './framework.js';
+import DbClient from './dbclient.js';
+import Routes from './routes.js';
 
 class Server {
   
-  static async init() {
+  static async init(addCustomRoutes) {
     console.log('=============================================================');
     console.log('Starting server');
     console.log('=============================================================');
     Framework.createEnvFile();
     DotEnv.config();
     Framework.setGlobalsVariables();
-    let app = Routes.init();
+    Routes.init();
+    addCustomRoutes();
     
     console.log('Connecting to DB...');
     await DbClient.connect(process.env.CONNECTION_STRING);
     console.log('Server connected to DB');
     
     return new Promise( (resolve, reject) => {
-      app.listen(process.env.PORT, () => {
+      Routes.app.listen(process.env.PORT, () => {
         console.log('Server started');
         this.onAfterStart();
         resolve(this);
