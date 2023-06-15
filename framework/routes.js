@@ -23,6 +23,11 @@ class Routes {
     app.use('/api/', Express.json());
     app.use('/public', Express.static(global.BASE_PATH + '/public'));
 
+    // Para usar los sourcemaps durante el desarrollo
+    if (process.env.NODE_ENV === 'development') {
+      app.use('/client', express.static(process.env.BASE_PATH + '/client'));
+    }
+
     app.use(this.errorHandler);
     
     this.app = app;
