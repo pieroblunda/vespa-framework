@@ -25,7 +25,7 @@ class Routes {
 
     // Para usar los sourcemaps durante el desarrollo
     if (process.env.NODE_ENV === 'development') {
-      app.use('/client', express.static(process.env.BASE_PATH + '/client'));
+      app.use('/client', Express.static(process.env.BASE_PATH + '/client'));
     }
 
     app.use(this.errorHandler);

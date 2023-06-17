@@ -63,6 +63,34 @@ class Framework {
     return Promise.all(promisesBag);
   } // compileStylus()
   
+  static createDirectories() {
+    let tree = [
+      'client/assets',
+      'client/js',
+      'client/styles',
+      'client/views',
+      'client/coverage',
+      'fixtures',
+      'public/css',
+      'public/js',
+      'public/media',
+      'reports',
+      'scripts',
+      'server/controllers',
+      'server/middlewares',
+      'server/models',
+      'test',
+    ];
+    for (var i = 0; i < tree.length; i++) {
+      if(!Fs.existsSync(tree[i])) {
+        Fs.mkdirSync(tree[i], { recursive: true });
+        console.log(Colors.yellow('✓') + `Folder ${tree[i]} was created`);
+      }
+    }
+    console.log(Colors.green('✓') + ' Structure folder checked');
+    
+  }
+  
   static createEnvFile(){
     return new Promise(function(resolve, reject) {
       const path = process.cwd() + '/.env';

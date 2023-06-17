@@ -11,18 +11,19 @@ class Server {
     console.log('Starting server');
     console.log('=============================================================');
     Framework.createEnvFile();
+    Framework.createDirectories();
     DotEnv.config();
     Framework.setGlobalsVariables();
+    Framework.compileStylus();
     Routes.init();
     addCustomRoutes();
     
-    console.log('Connecting to DB...');
     await DbClient.connect(process.env.CONNECTION_STRING);
-    console.log('Server connected to DB');
+    console.log(Colors.green('✓') + ' Connected to DB');
     
     return new Promise( (resolve, reject) => {
       Routes.app.listen(process.env.PORT, () => {
-        console.log('Server started');
+        console.log(Colors.green('✓') + ' Server started');
         this.onAfterStart();
         resolve(this);
       });
