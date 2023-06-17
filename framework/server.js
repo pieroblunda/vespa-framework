@@ -1,5 +1,6 @@
 'use strict';
 import DotEnv from 'dotenv';
+import Colors from 'colors';
 import Framework from './framework.js';
 import DbClient from './dbclient.js';
 import Routes from './routes.js';
@@ -17,6 +18,7 @@ class Server {
     Framework.compileStylus();
     Routes.init();
     addCustomRoutes();
+    Routes.app.use(Routes.defaultRoute);
     
     await DbClient.connect(process.env.CONNECTION_STRING);
     console.log(Colors.green('✓') + ' Connected to DB');

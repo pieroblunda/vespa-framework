@@ -1,5 +1,6 @@
 'use strict';
 import Express from 'express';
+import Colors from 'colors';
 import Cors from 'cors';
 import BodyParser from 'body-parser';
 
@@ -25,7 +26,7 @@ class Routes {
 
     // Para usar los sourcemaps durante el desarrollo
     if (process.env.NODE_ENV === 'development') {
-      app.use('/client', Express.static(process.env.BASE_PATH + '/client'));
+      app.use('/client', Express.static(global.BASE_PATH + '/client'));
     }
 
     app.use(this.errorHandler);
@@ -41,7 +42,9 @@ class Routes {
   }
   
   static defaultRoute (req, res) {
-    res.render('block-404', {
+    let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    console.log(Colors.yellow(`!! ROUTE NOT FOUND: ${fullUrl}`));
+    res.render('page-404', {
       isErrorPage: true
     });
   }

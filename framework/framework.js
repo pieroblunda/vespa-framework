@@ -53,13 +53,15 @@ class Framework {
               code: css
             };
             resolve(compiled);
-            console.log(Colors.grey('compiled ') + `${compiled.src} ➞ ${file.dest}`);
+            if(parseInt(process.env.VERBOSE)){
+              console.log(Colors.grey('compiled ') + `${compiled.src} ➞ ${file.dest}`);
+            }
           });
         });
       });
       promisesBag.push(singlePromise);
     });
-    
+    console.log(Colors.green('✓') + ' CSS compiled');
     return Promise.all(promisesBag);
   } // compileStylus()
   
