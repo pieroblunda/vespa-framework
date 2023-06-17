@@ -15,6 +15,7 @@ class Server {
     Framework.createDirectories();
     DotEnv.config();
     Framework.setGlobalsVariables();
+    Framework.compileStyusFramework();
     Framework.compileStylus();
     Routes.init();
     addCustomRoutes();

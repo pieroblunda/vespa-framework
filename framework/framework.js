@@ -2,6 +2,7 @@ import Fs from 'fs';
 import Colors from 'colors';
 import Stylus from 'stylus';
 import { fileURLToPath } from 'url';
+import StylusFramework from 'stylus-framework';
 
 class Framework {
   
@@ -11,6 +12,11 @@ class Framework {
     global.SERVER_PATH = global.BASE_PATH + '/server';
     global.VIEWS_PATH = global.BASE_PATH + '/client/views';
     global.PUBLIC_PATH = global.BASE_PATH + '/public';
+  }
+  
+  static compileStyusFramework() {
+    StylusFramework.copyTo(`${global.PUBLIC_PATH}/css`);
+    console.log(Colors.green('✓') + ' StylusFramework compiled');
   }
   
   static compileStylus() {
