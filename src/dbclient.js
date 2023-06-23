@@ -24,6 +24,11 @@ class DbClient {
     return this.db;
   }
   
+  /* @ToDo: [1] Es mejor eliminar esto  */
+  static collection(collectionName) {
+    return this.db.collection(collectionName);
+  }
+  
   static closeConnection() {
     return this.client.close();
   }

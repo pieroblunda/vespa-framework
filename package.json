@@ -1,9 +1,9 @@
 {
-  "name": "meanivan-js",
+  "name": "node-framework",
   "version": "0.2.0",
   "description": "",
-  "private": true,
   "license": "",
+  "private": false,
   "type": "module",
   "scripts": {
     "start": "node app.js",
@@ -18,14 +18,14 @@
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.13.3",
+    "glob-array": "^1.0.0",
     "mongodb": "^3.6.2",
     "pug": "^3.0.2",
     "stylus": "^0.59.0",
-    "stylus-framework": "^1.2.0"
+    "stylus-framework": "^1.4.0"
   },
-  "engines": {
-    "node": "14.x",
-    "npm": "7.x"
+  "bin": {
+    "myapp": "./src/cli.js"
   },
   "devDependencies": {
     "technical-debt-cli": "^2.2.0"
