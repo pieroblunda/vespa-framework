@@ -2,7 +2,6 @@ import Fs from 'fs';
 import Colors from 'colors';
 import Stylus from 'stylus';
 import Glob from 'glob-array';
-import { fileURLToPath } from 'url';
 import StylusFramework from 'stylus-framework';
 
 class Framework {
@@ -51,7 +50,8 @@ class Framework {
   }
   
   static setGlobalsVariables() {
-    global.BASE_PATH = fileURLToPath(import.meta.url).replace('/framework/framework.js', '');
+    let rootDirectory = process.cwd();
+    global.BASE_PATH = rootDirectory.replace('/framework/framework.js', '');
     global.CLIENT_PATH = global.BASE_PATH + '/client';
     global.SERVER_PATH = global.BASE_PATH + '/server';
     global.VIEWS_PATH = global.BASE_PATH + '/client/views';
