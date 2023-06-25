@@ -18,6 +18,7 @@ class Server {
     Framework.compileStyusFramework();
     Framework.compileStylus();
     Framework.watchJs();
+    Framework.watchStylus();
     Routes.init();
     addCustomRoutes();
     Routes.app.use(Routes.defaultRoute);

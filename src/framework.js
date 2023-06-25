@@ -2,6 +2,7 @@ import Fs from 'fs';
 import Colors from 'colors';
 import Stylus from 'stylus';
 import Glob from 'glob-array';
+import Chokidar from 'chokidar';
 import StylusFramework from 'stylus-framework';
 
 class Framework {
@@ -67,7 +68,7 @@ class Framework {
   static searchStylusFiles() {
     let patterns = [
       `${global.CLIENT_PATH}/_*/*.styl`,
-      `${global.CLIENT_PATH}/styles/app.styl`
+      `${global.CLIENT_PATH}/styles/*.styl`
     ];
     let globOptions = {};
     return Glob.sync(patterns, globOptions);
@@ -179,6 +180,15 @@ class Framework {
     Fs.watch(WATCH_PATH, (eventType, filename) => {
       console.log(`>>>> ${eventType} on ${filename}`);
       this.copyFolder(WATCH_PATH, PUBLIC_PATH);
+    });
+  }
+
+  static watchStylus() {
+    let stylusFiles = this.searchStylusFiles();
+    let options = {};
+    Chokidar.watch(stylusFiles, options).on('change', (path, stats) => {
+      console.log(Colors.grey('compiled ') + `${path} was changed`);
+      this.compileStylus();
     });
   }
 
