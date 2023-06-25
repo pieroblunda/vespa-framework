@@ -27,7 +27,6 @@ public/css
 public/js
 public/media
 reports
-scripts
 server/controllers
 server/middlewares
 server/models

@@ -73,15 +73,25 @@ class Framework {
     return Glob.sync(patterns, globOptions);
   }
   
+  static compileJs() {
+    const BASE_PATH = process.cwd();
+    const WATCH_PATH = `${process.cwd()}/client/js`;
+    const PUBLIC_PATH = `${BASE_PATH}/public/js`;
+    this.copyFolder(WATCH_PATH, PUBLIC_PATH);
+  }
+
   static compileStylus() {
     
     let promisesBag = [];
     
     let input = this.searchStylusFiles();
     input = input.map((item) => {
+      let dirPathArr = item.replace(global.CLIENT_PATH, global.PUBLIC_PATH).split('/');
+      let targetForlder = dirPathArr.slice(0, -1).join('/');
       return {
         src: item,
-        dest: item.replace(global.CLIENT_PATH, global.PUBLIC_PATH).replace('.styl', '.min.css')
+        dest: targetForlder,
+        destFilename: dirPathArr.at(-1).replace('.styl', '.min.css')
       };
     });
     
@@ -104,7 +114,13 @@ class Framework {
             return;
           }
           
-          Fs.writeFile(file.dest, css, function (err) {
+          // Check if the folder exists
+          if(!Fs.existsSync(file.dest)) {
+            Fs.mkdirSync(file.dest, { recursive: true });
+            console.log(Colors.yellow(`✓ Folder ${file.dest} was created`));
+          }
+
+          Fs.writeFile(`${file.dest}/${file.destFilename}`, css, function (err) {
             if (err){
               reject(err);
               return;
@@ -155,6 +171,38 @@ class Framework {
     console.log(Colors.green('✓') + ' Structure folder checked');
     
   }
+
+  static watchJs() {
+    const BASE_PATH = process.cwd();
+    const WATCH_PATH = `${process.cwd()}/client/js`;
+    const PUBLIC_PATH = `${BASE_PATH}/public/js`;
+    Fs.watch(WATCH_PATH, (eventType, filename) => {
+      console.log(`>>>> ${eventType} on ${filename}`);
+      this.copyFolder(WATCH_PATH, PUBLIC_PATH);
+    });
+  }
+
+  static copyFolder(src, dest) {
+    Fs.cpSync(src, dest, {recursive: true});
+    console.log(Colors.grey('compiled ') + `${src} ➞ ${dest}`);
+  }
+
+  // static uglifyJs(input, output) {
+  //   // Uglify vendor
+  //   var allCodeStringVendor = '';
+  //   var uglified = null;
+
+  //   input.forEach((file, i) => {
+  //     allCodeStringVendor += fs.readFileSync(file, "utf8");
+  //   });
+
+  //   uglified = UglifyJS.minify(allCodeStringVendor).code;
+    
+  //   fs.writeFile(output, uglified, function (err) {
+  //     if (err) return console.log(err);
+  //     console.log('Compiled:  See the output at ' + output);
+  //   });
+  // }; // uglifyJs()
   
   static createEnvFile(){
     return new Promise(function(resolve, reject) {

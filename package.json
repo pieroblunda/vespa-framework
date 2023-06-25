@@ -1,6 +1,6 @@
 {
   "name": "node-framework",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "license": "",
   "private": false,
@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node app.js",
     "debug": "node --inspect-brk app.js",
-    "build": "node scripts/heroku-build.js",
+    "build": "node scripts/build.js",
     "heroku-postbuild": "npm run build",
     "prod": "heroku local -e .env.prod"
   },
