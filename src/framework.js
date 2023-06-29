@@ -1,6 +1,7 @@
 import Fs from 'fs';
 import Colors from 'colors';
 import Stylus from 'stylus';
+import DotEnv from 'dotenv';
 import Glob from 'glob-array';
 import Chokidar from 'chokidar';
 import StylusFramework from 'stylus-framework';
@@ -12,7 +13,7 @@ class Framework {
   }
   
   static init() {
-    this.createEnvFile();
+    this.setupEnvFile();
     this.createDirectories();
     this.setGlobalsVariables();
     this.compileStyusFramework();
@@ -214,7 +215,11 @@ class Framework {
   //   });
   // }; // uglifyJs()
   
-  static createEnvFile(){
+  static setupEnvFile(){
+
+    if (process.env.NODE_ENV !== 'development') {
+      return;
+    }
     return new Promise(function(resolve, reject) {
       const BASE_PATH = process.cwd();
       const PACKAGE_PATH = `${process.cwd()}/node_modules/node-framework`;
@@ -223,11 +228,13 @@ class Framework {
       try {
         Fs.accessSync( dotEnvPath, Fs.constants.F_OK);
         console.log(Colors.green('✓') + ' Environment file .env detected');
+        DotEnv.config();
       } catch (e) {
         Fs.copyFileSync(`${PACKAGE_PATH}/files-template/.env-template`, '.env', Fs.constants.COPYFILE_EXCL);
         console.log(Colors.green('✓') + ' CHECK THE .env DEFAULTS OPTIONS', Colors.yellow('<==============='));
       }
     });
+
   } //createEnvFile()
   
 }

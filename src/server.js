@@ -1,5 +1,4 @@
 'use strict';
-import DotEnv from 'dotenv';
 import Colors from 'colors';
 import Framework from './framework.js';
 import DbClient from './dbclient.js';
@@ -11,9 +10,8 @@ class Server {
     console.log('=============================================================');
     console.log('Starting server');
     console.log('=============================================================');
-    Framework.createEnvFile();
+    Framework.setupEnvFile();
     Framework.createDirectories();
-    DotEnv.config();
     Framework.setGlobalsVariables();
     Framework.compileStyusFramework();
     Framework.compileStylus();
