@@ -1,4 +1,5 @@
 'use strict';
+import DotEnv from 'dotenv';
 import Colors from 'colors';
 import Framework from './framework.js';
 import DbClient from './dbclient.js';
@@ -10,6 +11,9 @@ class Server {
     console.log('=============================================================');
     console.log('Starting server');
     console.log('=============================================================');
+    if(!process.env.NODE_ENV || process.env.NODE_ENV !== 'production') {
+      DotEnv.config();
+    }
     Framework.setupEnvFile();
     Framework.createDirectories();
     Framework.setGlobalsVariables();
