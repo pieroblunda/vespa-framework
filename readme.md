@@ -1,5 +1,27 @@
 # Readme
 
+## Compile Stylus
+
+```
+El sistema compila todos los stylus que encuentra en la carpeta client
+
+Los compila cuando:
+* Al salvar un file tramite un watcher
+* Al iniciar el servidor
+```
+
+# Soporte a pbStylus framework
+
+> Agregar documentacion
+
+# Soporte a mongoDb y a un CRUD
+
+> Agregar documentacion
+
+# Soporte a Express
+
+> Agregar documentacion
+
 ## Middlewares
 
 ### Init
