@@ -14,16 +14,16 @@ class StylusFramework {
   }
   
   static copyTo(dir) {
-    const fromDirectory = fileURLToPath(import.meta.url).replace('/app.js', '');
-    const from = `${fromDirectory}/dest/stylus-framework.min.css`;
-    const to = `${dir}/stylus-framework.min.css`;
-    Fs.copyFile(from, to, (error) => {
-      if (error) {
-        throw error
-        return;
-      }
-      console.log(Colors.grey('copied ') + `${from} ➞ ${to}`);
-    })
+    // const fromDirectory = fileURLToPath(import.meta.url).replace('/app.js', '');
+    // const from = `${fromDirectory}/dest/stylus-framework.min.css`;
+    // const to = `${dir}/stylus-framework.min.css`;
+    // Fs.copyFile(from, to, (error) => {
+    //   if (error) {
+    //     throw error
+    //     return;
+    //   }
+    //   console.log(Colors.grey('copied ') + `${from} ➞ ${to}`);
+    // })
   }
   
   static copyLayoutCss() {
@@ -44,7 +44,7 @@ class StylusFramework {
     
     let input = [{
       src: `./src/app.styl`,
-      dest: `./dest/stylus-framework.min.css`
+      dest: `./public/css/stylus-framework.min.css`
     }];
     
     let promisesBag = [];
