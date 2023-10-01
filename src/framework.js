@@ -15,8 +15,8 @@ class Framework {
     this.setupEnvFile();
     this.createDirectories();
     this.setGlobalsVariables();
-    this.compileStyusFramework();
-    this.compileStylus();
+    // this.compileStyusFramework();
+    // this.compileStylus();
     
     /* @ToDo: [1] must to create the .gitkeet files in each folder */
     /* @ToDo: [1] package.json must have $ npm run debug  */
