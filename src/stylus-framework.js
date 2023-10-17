@@ -9,8 +9,6 @@ class StylusFramework {
   
   static compileAll() {
     this.compileStylus();
-    this.compileLayoutPug();
-    this.copyLayoutCss();
   }
   
   static copyTo(dir) {
@@ -26,25 +24,11 @@ class StylusFramework {
     // })
   }
   
-  static copyLayoutCss() {
-    Fs.copyFileSync('style.css', './dest/style.css');
-  }
-  
-  static compileLayoutPug() {
-    
-    const compiledFunction = Pug.compileFile('index.pug');
-
-    // Render a set of data
-    let content = compiledFunction();
-    Fs.writeFileSync('./docs/index.html', content,'utf8');
-    console.log(Colors.grey('compiled ') + `index.pug ➞ docs/index.html`);
-  }
-  
   static compileStylus() {
     
     let input = [{
       src: `./src/app.styl`,
-      dest: `./public/css/stylus-framework.min.css`
+      dest: `./public/stylus/stylus-framework.min.css`
     }];
     
     let promisesBag = [];

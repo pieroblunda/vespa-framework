@@ -17,7 +17,7 @@ class Server {
     Framework.setupEnvFile();
     Framework.createDirectories();
     Framework.setGlobalsVariables();
-    Framework.compileStyusFramework();
+    // Framework.compileStyusFramework();
     Framework.compileStylus();
     Framework.watchJs();
     Framework.watchStylus();

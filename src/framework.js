@@ -15,7 +15,7 @@ class Framework {
     this.setupEnvFile();
     this.createDirectories();
     this.setGlobalsVariables();
-    this.compileStyusFramework();
+    // this.compileStyusFramework();
     this.compileStylus();
     
     /* @ToDo: [1] must to create the .gitkeet files in each folder */
@@ -59,11 +59,11 @@ class Framework {
     global.PUBLIC_PATH = global.BASE_PATH + '/public';
   }
   
-  static compileStyusFramework() {
-    const PUBLIC_PATH = `${process.cwd()}/public`;
-    StylusFramework.copyTo(`${PUBLIC_PATH}/css`);
-    console.log(Colors.green('✓') + ' StylusFramework compiled');
-  }
+  // static compileStyusFramework() {
+  //   const PUBLIC_PATH = `${process.cwd()}/public`;
+  //   StylusFramework.copyTo(`${PUBLIC_PATH}/css`);
+  //   console.log(Colors.green('✓') + ' StylusFramework compiled');
+  // }
   
   static searchStylusFiles() {
     let patterns = [

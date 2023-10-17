@@ -17,7 +17,8 @@ class Routes {
     // Pretty HTML on dev env
     app.locals.pretty = process.env.NODE_ENV === 'development';
     
-    app.use(BodyParser.json());
+    // app.use(BodyParser.json());
+    app.use(BodyParser.json({limit: '50mb'}));
     app.use(Cors());
     
     // Routes config
