@@ -13,18 +13,20 @@ class Framework {
   static test() {
     console.log('Works!');
   }
+
+  static install() {
+    this.createDirectories();
+    this.updatePackageJsonOptions();
+    this.installMustHaveFiles();
+  }
   
   static init() {
     this.setupEnvFile();
     this.createDirectories();
     this.setGlobalsVariables();
-    // this.compileStyusFramework();
     this.compileStylus();
-    this.updatePackageJsonOptions();
     
     /* @ToDo: [1] must to create the .gitkeep files in each folder */
-    /* @ToDo: [1] Must create defaultls /server/models */
-    /* @ToDo: [1] Must create defaultls /server/controllers */
     /* @ToDo: [1] Must create defaultls /server/middleware */
     
   }
@@ -37,12 +39,6 @@ class Framework {
     global.VIEWS_PATH = global.BASE_PATH + '/client/views';
     global.PUBLIC_PATH = global.BASE_PATH + '/public';
   }
-  
-  // static compileStyusFramework() {
-  //   const PUBLIC_PATH = `${process.cwd()}/public`;
-  //   StylusFramework.copyTo(`${PUBLIC_PATH}/css`);
-  //   console.log(Colors.green('✓') + ' StylusFramework compiled');
-  // }
   
   static searchStylusFiles() {
     let patterns = [
@@ -150,11 +146,10 @@ class Framework {
       }
     }
     console.log(Colors.green('✓') + ' Structure folder checked');
+  }
 
-    // Create files
-
-
-    // app.js
+  static installMustHaveFiles() {
+    const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
     let files = [
       'app.js',
       '.editorconfig',
@@ -169,7 +164,6 @@ class Framework {
         console.log(Colors.green('✓') + ` COPYED ${files[i]}`);
       }
     }
-    
   }
 
   static watchJs() {

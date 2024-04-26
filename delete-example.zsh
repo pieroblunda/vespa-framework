@@ -1,1 +1,1 @@
-rm -rf client fixtures reports scripts server test && rm .env .gitignore .editorconfig app.js readme.md
+rm -rf client coverage fixtures reports scripts server test && rm .env .gitignore .editorconfig app.js readme.md
