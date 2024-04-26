@@ -6,6 +6,10 @@ import DbClient from './dbclient.js';
 import Routes from './routes.js';
 
 class Server {
+
+  static test() {
+    console.log('It works!');
+  }
   
   static async init(addCustomRoutes) {
     console.log('=============================================================');

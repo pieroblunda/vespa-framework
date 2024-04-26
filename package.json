@@ -1,17 +1,11 @@
 {
-  "name": "node-pbframework",
+  "name": "vespajs",
   "version": "0.10.2",
   "description": "",
   "license": "",
   "private": false,
   "type": "module",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "debug": "node --inspect-brk app.js",
-    "build": "node node_modules/node-pbframework/scripts/build.js",
-    "prod": "heroku local -e .env.prod"
-  },
+  "main": "./src/framework.js",
   "dependencies": {
     "body-parser": "^1.19.0",
     "chokidar": "^3.5.3",
@@ -23,9 +17,6 @@
     "mongodb": "^3.6.2",
     "pug": "^3.0.2",
     "stylus": "^0.59.0"
-  },
-  "bin": {
-    "myapp": "./src/cli.js"
   },
   "devDependencies": {
     "technical-debt-cli": "^2.2.0"

@@ -5,6 +5,9 @@ import Glob from 'glob-array';
 import Chokidar from 'chokidar';
 import StylusFramework from './stylus-framework.js';
 
+import Server from './server.js';
+import Routes from './routes.js';
+
 class Framework {
   
   static test() {
@@ -128,7 +131,7 @@ class Framework {
       'client/js',
       'client/styles',
       'client/views',
-      'client/coverage',
+      'coverage',
       'fixtures',
       'public/css',
       'public/js',
@@ -143,7 +146,7 @@ class Framework {
     for (var i = 0; i < tree.length; i++) {
       if(!Fs.existsSync(tree[i])) {
         Fs.mkdirSync(tree[i], { recursive: true });
-        console.log(Colors.yellow('✓') + `Folder ${tree[i]} was created`);
+        console.log(Colors.yellow('✓') + ` Folder ${tree[i]} was created`);
       }
     }
     console.log(Colors.green('✓') + ' Structure folder checked');
@@ -156,12 +159,14 @@ class Framework {
       'app.js',
       '.editorconfig',
       '.gitignore',
-      'readme.md'
+      'readme.md',
+      'server/models/routes.server.model.js',
+      'server/controllers/example.server.controller.js'
     ];
-    for (var i = 0; i < tree.length; i++) {
+    for (var i = 0; i < files.length; i++) {
       if(!Fs.existsSync(files[i])) {
         Fs.copyFileSync(`${FILE_TEMPLATE_PATH}/${files[i]}`, files[i], Fs.constants.COPYFILE_EXCL);
-        console.log(Colors.green('✓') + `COPYED ${files[i]}`);
+        console.log(Colors.green('✓') + ` COPYED ${files[i]}`);
       }
     }
     
@@ -233,7 +238,7 @@ class Framework {
       scripts: {
         start: 'node app.js',
         debug: 'node --inspect-brk app.js',
-        build: 'node node_modules/node-pbframework/scripts/build.js',
+        build: 'node node_modules/vespajs/scripts/build.js',
         prod: 'heroku local -e .env.prod',
         qr: 'node app.js default-partner --qr',
         fixtures: 'node app.js --fixtures',
@@ -261,7 +266,7 @@ class Framework {
 
   static getRelativeDirectory() {
     const BASE_PATH = process.cwd();
-    const PACKAGE_PATH = `${BASE_PATH}/node_modules/node-framework`;
+    const PACKAGE_PATH = `${BASE_PATH}/node_modules/vespajs`;
     let copyFromNpmPackage = `${PACKAGE_PATH}/files-template`;
     let copyFromSource = `${BASE_PATH}/files-template`;
     let copyFrom;
@@ -280,3 +285,4 @@ class Framework {
 }
 
 export default Framework;
+export {Server, Routes};
