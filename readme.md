@@ -1,5 +1,18 @@
 # Readme
 
+Errors:
+1. No se como correr Framework.init()
+2. SyntaxError: Cannot use import statement outside a module
+
+
+
+## Instructions
+```bash
+$ node src/cli.js init
+```
+
+
+
 ## Compile Stylus
 
 ```

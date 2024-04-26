@@ -17,33 +17,9 @@ class Framework {
     this.setGlobalsVariables();
     // this.compileStyusFramework();
     this.compileStylus();
+    this.updatePackageJsonOptions();
     
-    /* @ToDo: [1] must to create the .gitkeet files in each folder */
-    /* @ToDo: [1] package.json must have $ npm run debug  */
-    /* @ToDo: [1] package.json must have $ npm run build  */
-    /* @ToDo: [1] package.json must have $ npm run prod  */
-    /*
-    scripts: {
-      "debug": "node --inspect-brk app.js",
-      "build": "node scripts/heroku-build.js",
-      "prod": "heroku local -e .env.prod"
-    }
-    */
-    
-    /* @ToDo: [1] package.json must have engines keys  */
-    /*
-    "engines": {
-      "node": "14.x",
-      "npm": "7.x"
-    },
-    */
-    
-    /* @ToDo: [1] must create ./app.js is not exists  */
-    /* @ToDo: [1] must create ./.gitignore is not exists  */
-    /* @ToDo: [1] must create ./.env is not exists  */
-    /* @ToDo: [1] must create ./.readme.md is not exists  */
-    /* @ToDo: [1]  must create jest-config.json is not exists */
-    
+    /* @ToDo: [1] must to create the .gitkeep files in each folder */
     /* @ToDo: [1] Must create defaultls /server/models */
     /* @ToDo: [1] Must create defaultls /server/controllers */
     /* @ToDo: [1] Must create defaultls /server/middleware */
@@ -96,7 +72,7 @@ class Framework {
       };
     });
     
-    input.forEach(function(file){
+    input.forEach( (file) => {
       let fileStr = Fs.readFileSync(file.src, "utf8");
       let singlePromise = new Promise( (resolve, reject) => {
         Stylus(fileStr)
@@ -146,6 +122,7 @@ class Framework {
   } // compileStylus()
   
   static createDirectories() {
+    const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
     let tree = [
       'client/assets',
       'client/js',
@@ -170,6 +147,23 @@ class Framework {
       }
     }
     console.log(Colors.green('✓') + ' Structure folder checked');
+
+    // Create files
+
+
+    // app.js
+    let files = [
+      'app.js',
+      '.editorconfig',
+      '.gitignore',
+      'readme.md'
+    ];
+    for (var i = 0; i < tree.length; i++) {
+      if(!Fs.existsSync(files[i])) {
+        Fs.copyFileSync(`${FILE_TEMPLATE_PATH}/${files[i]}`, files[i], Fs.constants.COPYFILE_EXCL);
+        console.log(Colors.green('✓') + `COPYED ${files[i]}`);
+      }
+    }
     
   }
 
@@ -214,26 +208,74 @@ class Framework {
   //   });
   // }; // uglifyJs()
   
-  static setupEnvFile(){
+  static setupEnvFile() {
 
     if (process.env.NODE_ENV === 'production') {
       return;
     }
-    return new Promise(function(resolve, reject) {
-      const BASE_PATH = process.cwd();
-      const PACKAGE_PATH = `${process.cwd()}/node_modules/node-framework`;
-      const dotEnvPath = BASE_PATH + '/.env';
+    return new Promise( (resolve, reject) => {
+
+      const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
+      
       // Check if the file exists in the current directory.
-      try {
-        Fs.accessSync( dotEnvPath, Fs.constants.F_OK);
-        console.log(Colors.green('✓') + ' Environment file .env detected');
-      } catch (e) {
-        Fs.copyFileSync(`${PACKAGE_PATH}/files-template/.env-template`, '.env', Fs.constants.COPYFILE_EXCL);
+      if(!Fs.existsSync(`${process.cwd()}/.env`)) {
+        Fs.copyFileSync(`${FILE_TEMPLATE_PATH}/.env-template`, '.env', Fs.constants.COPYFILE_EXCL);
         console.log(Colors.green('✓') + ' CHECK THE .env DEFAULTS OPTIONS', Colors.yellow('<==============='));
       }
     });
 
   } //createEnvFile()
+
+  static updatePackageJsonOptions() {
+    const vespaConfig = {
+      type: 'module',
+      main: 'app.js',
+      scripts: {
+        start: 'node app.js',
+        debug: 'node --inspect-brk app.js',
+        build: 'node node_modules/node-pbframework/scripts/build.js',
+        prod: 'heroku local -e .env.prod',
+        qr: 'node app.js default-partner --qr',
+        fixtures: 'node app.js --fixtures',
+      },
+      engines: {
+        node: '21.x',
+        npm: '10.x'
+      }
+    };
+
+    let fileStr = JSON.parse(Fs.readFileSync('package.json', "utf8"));
+    let updatedContent = JSON.stringify({...fileStr, ...vespaConfig}, null, 2);
+    Fs.writeFile(`package.json`, updatedContent, (err) => {
+      if (err){
+        reject(err);
+        return;
+      }
+      
+      if(parseInt(process.env.VERBOSE)){
+        console.log(Colors.grey('PackageJson updated ') + `package.json ➞ package.json}`);
+      }
+    });
+
+  }
+
+  static getRelativeDirectory() {
+    const BASE_PATH = process.cwd();
+    const PACKAGE_PATH = `${BASE_PATH}/node_modules/node-framework`;
+    let copyFromNpmPackage = `${PACKAGE_PATH}/files-template`;
+    let copyFromSource = `${BASE_PATH}/files-template`;
+    let copyFrom;
+
+    try {
+      Fs.accessSync( copyFromNpmPackage, Fs.constants.F_OK);
+      copyFrom = copyFromNpmPackage;
+    } catch (e) {
+      copyFrom = copyFromSource;
+    }
+
+    return copyFrom;
+
+  }
   
 }
 

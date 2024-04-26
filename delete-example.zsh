@@ -1,0 +1,1 @@
+rm -rf client fixtures reports scripts server test && rm .env .gitignore .editorconfig
