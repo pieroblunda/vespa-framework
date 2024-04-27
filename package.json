@@ -19,5 +19,12 @@
   },
   "devDependencies": {
     "technical-debt-cli": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pieroblunda/vespajs.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
