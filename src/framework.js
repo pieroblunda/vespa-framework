@@ -255,12 +255,13 @@ class Framework {
         start: 'node app.js',
         debug: 'node --inspect-brk app.js',
         build: 'node node_modules/vespajs/scripts/build.js',
-        prod: 'heroku local -e .env.prod',
+        // prod: 'heroku local -e .env.prod',
         qr: 'node app.js default-partner --qr',
         fixtures: 'node app.js --fixtures',
       },
       engines: {
-        node: '21.x',
+        // http://vercel.link/node-version
+        node: '20.x',
         npm: '10.x'
       }
     };
