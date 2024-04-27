@@ -3,6 +3,6 @@
 ## Install
 ```
 $ npm install vespajs
-$ node node_modules/vespajs/src/cli.js
+$ node node_modules/vespajs/src/install.js
 $ node app.js
 ```

@@ -18,6 +18,8 @@ class Framework {
     this.createDirectories();
     this.updatePackageJsonOptions();
     this.installMustHaveFiles();
+    this.setupEnvFile();
+    this.writeGitKeepFile();
   }
   
   static init() {
@@ -25,10 +27,6 @@ class Framework {
     this.createDirectories();
     this.setGlobalsVariables();
     this.compileStylus();
-    
-    /* @ToDo: [1] must to create the .gitkeep files in each folder */
-    /* @ToDo: [1] Must create defaultls /server/middleware */
-    
   }
   
   static setGlobalsVariables() {
@@ -134,9 +132,9 @@ class Framework {
       'public/media',
       'reports',
       'scripts',
+      'server/models',
       'server/controllers',
       'server/middlewares',
-      'server/models',
       'test',
     ];
     for (var i = 0; i < tree.length; i++) {
@@ -156,7 +154,8 @@ class Framework {
       '.gitignore',
       'readme.md',
       'server/models/routes.server.model.js',
-      'server/controllers/example.server.controller.js'
+      'server/controllers/example.server.controller.js',
+      'server/middlewares/example.server.middleware.js'
     ];
     for (var i = 0; i < files.length; i++) {
       if(!Fs.existsSync(files[i])) {
@@ -224,6 +223,29 @@ class Framework {
     });
 
   } //createEnvFile()
+
+  static writeGitKeepFile() {
+    const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
+    let files = [
+      'client/styles',
+      'client/views',
+      'coverage',
+      'fixtures',
+      'public/css',
+      'public/js',
+      'public/media',
+      'reports',
+      'scripts',
+      'server/controllers',
+      'server/middlewares',
+      'server/models',
+      'test',
+    ];
+    for (var i = 0; i < files.length; i++) {
+      Fs.writeFileSync(`${files[i]}/.gitkeep`, '');
+      console.log(Colors.green('✓') + ` Created ${files[i]}/.gitkeep`);
+    }
+  }
 
   static updatePackageJsonOptions() {
     const vespaConfig = {
