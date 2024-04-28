@@ -20,6 +20,7 @@ class Framework {
     this.installMustHaveFiles();
     this.setupEnvFile();
     this.writeGitKeepFile();
+    this.writeGitIgnore();
   }
   
   static init() {
@@ -151,7 +152,6 @@ class Framework {
     let files = [
       'app.js',
       '.editorconfig',
-      '.gitignore',
       'readme.md',
       'server/models/routes.server.model.js',
       'server/controllers/example.server.controller.js',
@@ -245,6 +245,20 @@ class Framework {
       Fs.writeFileSync(`${files[i]}/.gitkeep`, '');
       console.log(Colors.green('✓') + ` Created ${files[i]}/.gitkeep`);
     }
+  }
+
+  static writeGitIgnore() {
+    let content = `node_modules
+mongod.bat
+coverage
+reports/**/*
+public/**/*
+!**/*.gitkeep
+!public/media/favicon.ico
+*.log
+*.DS_Store`;
+    Fs.writeFileSync(`.gitignore`, content);
+    console.log(Colors.green('✓') + ` Created .gitignore`);
   }
 
   static updatePackageJsonOptions() {
