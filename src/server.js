@@ -15,11 +15,11 @@ class Server {
     console.log('Starting server');
     console.log('=============================================================');
     console.log('Config NODE_ENV:', process.env.NODE_ENV);
-    Framework.setupEnvFile();
-    Framework.createDirectories();
-    Framework.setGlobalsVariables();
-    // Framework.compileStyusFramework();
-    Framework.compileStylus();
+    // Framework.setupEnvFile();
+    // Framework.createDirectories();
+    // Framework.setGlobalsVariables();
+    // // Framework.compileStyusFramework();
+    // Framework.compileStylus();
     Framework.watchJs();
     Framework.watchStylus();
     Routes.init();

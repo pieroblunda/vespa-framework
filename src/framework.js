@@ -25,6 +25,7 @@ class Framework {
   
   static init() {
     this.setupEnvFile();
+    this.loadEnvFile();
     this.createDirectories();
     this.setGlobalsVariables();
     this.compileStylus();
@@ -37,6 +38,22 @@ class Framework {
     global.SERVER_PATH = global.BASE_PATH + '/server';
     global.VIEWS_PATH = global.BASE_PATH + '/client/views';
     global.PUBLIC_PATH = global.BASE_PATH + '/public';
+
+    console.log('Global variables:');
+    console.log(`global.BASE_PATH: ${global.BASE_PATH}`);
+    console.log(`global.CLIENT_PATH: ${global.CLIENT_PATH}`);
+    console.log(`global.SERVER_PATH: ${global.SERVER_PATH}`);
+    console.log(`global.VIEWS_PATH: ${global.VIEWS_PATH}`);
+    console.log(`global.PUBLIC_PATH: ${global.PUBLIC_PATH}`);
+    console.log('---------------------------------------------------------');
+    console.log('');
+  }
+
+  static loadEnvFile() {
+    // Load file .env in Dev environmet
+    if(!process.env.NODE_ENV) {
+      process.loadEnvFile();
+    }
   }
   
   static searchStylusFiles() {
@@ -220,6 +237,12 @@ class Framework {
         Fs.copyFileSync(`${FILE_TEMPLATE_PATH}/.env-template`, '.env', Fs.constants.COPYFILE_EXCL);
         console.log(Colors.green('✓') + ' CHECK THE .env DEFAULTS OPTIONS', Colors.yellow('<==============='));
       }
+
+      // Check if the file exists in the current directory.
+      if(!Fs.existsSync(`${process.cwd()}/.env-production`)) {
+        Fs.copyFileSync(`${FILE_TEMPLATE_PATH}/.env-production`, '.env-production', Fs.constants.COPYFILE_EXCL);
+        console.log(Colors.green('✓') + ' CHECK THE .env-production DEFAULTS OPTIONS', Colors.yellow('<==============='));
+      }
     });
 
   } //createEnvFile()
@@ -268,10 +291,11 @@ public/**/*
       scripts: {
         start: 'node app.js',
         debug: 'node --inspect-brk app.js',
+        staging: 'node --env-file=.env-production app.js',
         build: 'node node_modules/vespa-framework/src/build.js',
         // prod: 'heroku local -e .env.prod',
         qr: 'node app.js default-partner --qr',
-        fixtures: 'node app.js --fixtures',
+        fixtures: 'node app.js --fixtures'
       },
       engines: {
         // http://vercel.link/node-version
