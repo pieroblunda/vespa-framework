@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "NodeJs minimalist framework",
   "license": "",
-  "private": false,
+  "private": "false",
   "type": "module",
   "main": "./src/framework.js",
   "repository": {

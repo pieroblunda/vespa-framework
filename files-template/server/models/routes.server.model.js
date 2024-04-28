@@ -1,4 +1,4 @@
-import {Routes} from 'vespajs';
+import {Routes} from 'vespa-framework';
 
 import * as exampleController from '../controllers/example.server.controller.js';
 // import * as exampleMiddleware from '../middlewares/example.server.middleware.js';

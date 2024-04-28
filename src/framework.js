@@ -283,7 +283,7 @@ class Framework {
 
   static getRelativeDirectory() {
     const BASE_PATH = process.cwd();
-    const PACKAGE_PATH = `${BASE_PATH}/node_modules/vespajs`;
+    const PACKAGE_PATH = `${BASE_PATH}/node_modules/vespa-framework`;
     let copyFromNpmPackage = `${PACKAGE_PATH}/files-template`;
     let copyFromSource = `${BASE_PATH}/files-template`;
     let copyFrom;

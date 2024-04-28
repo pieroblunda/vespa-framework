@@ -1,5 +1,5 @@
-import VespaJs from 'vespajs';
-import {Server} from 'vespajs';
+import VespaJs from 'vespa-framework';
+import {Server} from 'vespa-framework';
 import Routes from './server/models/routes.server.model.js';
 
 process.loadEnvFile();
