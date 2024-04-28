@@ -3,6 +3,6 @@
 ## Install
 ```
 $ npm install vespa-framework
-$ node node_modules/vespajs/src/install.js
+$ node node_modules/vespa-framework/src/install.js
 $ node app.js
 ```

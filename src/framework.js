@@ -254,7 +254,7 @@ class Framework {
       scripts: {
         start: 'node app.js',
         debug: 'node --inspect-brk app.js',
-        build: 'node node_modules/vespajs/scripts/build.js',
+        build: 'node node_modules/vespa-framework/src/build.js',
         // prod: 'heroku local -e .env.prod',
         qr: 'node app.js default-partner --qr',
         fixtures: 'node app.js --fixtures',
