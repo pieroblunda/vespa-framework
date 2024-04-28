@@ -11,6 +11,10 @@ class DbClient {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     };
+
+    if(!mongoURI) {
+      return Promise.resolve();
+    }
     
     try {
       this.client = await MongoClient.connect(mongoURI, dbOptions);
