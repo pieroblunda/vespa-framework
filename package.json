@@ -3,11 +3,11 @@
   "version": "0.0.3",
   "description": "NodeJs minimalist framework",
   "license": "",
-  "private": "false",
+  "private": false,
   "type": "module",
   "main": "./src/framework.js",
   "repository": {
-    "url": "https://github.com/pieroblunda/vespa-framework.git"
+    "url": "git+https://github.com/pieroblunda/vespa-framework.git"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
