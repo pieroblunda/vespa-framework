@@ -1,7 +1,7 @@
 {
   "name": "vespajs",
-  "version": "0.10.2",
-  "description": "",
+  "version": "0.2.0",
+  "description": "NodeJs minimalist framework",
   "license": "",
   "private": false,
   "type": "module",
@@ -19,9 +19,5 @@
   },
   "devDependencies": {
     "technical-debt-cli": "^2.2.0"
-  },
-  "repository":"https://github.com/pieroblunda/vespajs",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
