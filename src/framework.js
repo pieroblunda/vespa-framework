@@ -4,7 +4,6 @@ import Stylus from 'stylus';
 import Glob from 'glob-array';
 import Chokidar from 'chokidar';
 import StylusFramework from './stylus-framework.js';
-
 import Server from './server.js';
 import Routes from './routes.js';
 
@@ -58,8 +57,8 @@ class Framework {
   
   static searchStylusFiles() {
     let patterns = [
-      `${global.CLIENT_PATH}/_*/*.styl`,
-      `${global.CLIENT_PATH}/styles/*.styl`
+      `${global.CLIENT_PATH}/_*/*-src.styl`,
+      `${global.CLIENT_PATH}/styles/*-src.styl`
     ];
     let globOptions = {};
     return Glob.sync(patterns, globOptions);
@@ -112,6 +111,7 @@ class Framework {
             console.log(Colors.yellow(`✓ Folder ${file.dest} was created`));
           }
 
+          file.destFilename = file.destFilename.replace('-src', '');
           Fs.writeFile(`${file.dest}/${file.destFilename}`, css, function (err) {
             if (err){
               reject(err);
@@ -125,7 +125,7 @@ class Framework {
             };
             resolve(compiled);
             if(parseInt(process.env.VERBOSE)){
-              console.log(Colors.grey('compiled ') + `${compiled.src} ➞ ${file.dest}`);
+              console.log(Colors.grey('compiled ') + `${compiled.src} ➞ ${file.dest}/${file.destFilename}`);
             }
           });
         });
