@@ -7,6 +7,7 @@ class Build {
     Framework.setGlobalsVariables();
     Framework.compileStylus();
     Framework.compileJs();
+    Framework.compileMedia();
     console.log('Build done!');
   }
   

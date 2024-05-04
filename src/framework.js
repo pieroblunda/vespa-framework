@@ -3,10 +3,11 @@ import Colors from 'colors';
 import Stylus from 'stylus';
 import Glob from 'glob-array';
 import Chokidar from 'chokidar';
-import StylusFramework from './stylus-framework.js';
 
+import StylusFramework from './stylus-framework.js';
 import Server from './server.js';
 import Routes from './routes.js';
+import Db from './db.js';
 
 class Framework {
   
@@ -58,8 +59,8 @@ class Framework {
   
   static searchStylusFiles() {
     let patterns = [
-      `${global.CLIENT_PATH}/_*/*.styl`,
-      `${global.CLIENT_PATH}/styles/*.styl`
+      `${global.CLIENT_PATH}/_*/*-src.styl`,
+      `${global.CLIENT_PATH}/styles/*-src.styl`
     ];
     let globOptions = {};
     return Glob.sync(patterns, globOptions);
@@ -112,6 +113,7 @@ class Framework {
             console.log(Colors.yellow(`✓ Folder ${file.dest} was created`));
           }
 
+          file.destFilename = file.destFilename.replace('-src', '');
           Fs.writeFile(`${file.dest}/${file.destFilename}`, css, function (err) {
             if (err){
               reject(err);
@@ -125,7 +127,7 @@ class Framework {
             };
             resolve(compiled);
             if(parseInt(process.env.VERBOSE)){
-              console.log(Colors.grey('compiled ') + `${compiled.src} ➞ ${file.dest}`);
+              console.log(Colors.grey('compiled ') + `${compiled.src} ➞ ${file.dest}/${file.destFilename}`);
             }
           });
         });
@@ -135,11 +137,18 @@ class Framework {
     console.log(Colors.green('✓') + ' CSS compiled');
     return Promise.all(promisesBag);
   } // compileStylus()
+
+  static compileMedia() {
+    let src = `${global.CLIENT_PATH}/media`;
+    let dest = `${global.PUBLIC_PATH}/media`;
+    Fs.cpSync(src, dest, {recursive: true});
+    console.log(Colors.grey('copyed ') + `${src} ➞ ${dest}/${dest}`);
+  }
   
   static createDirectories() {
     const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
     let tree = [
-      'client/assets',
+      'client/media',
       'client/js',
       'client/styles',
       'client/views',
@@ -340,4 +349,4 @@ public/**/*
 }
 
 export default Framework;
-export {Server, Routes};
+export {Server, Routes, Db};
