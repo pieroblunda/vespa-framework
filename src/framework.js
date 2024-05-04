@@ -3,9 +3,11 @@ import Colors from 'colors';
 import Stylus from 'stylus';
 import Glob from 'glob-array';
 import Chokidar from 'chokidar';
+
 import StylusFramework from './stylus-framework.js';
 import Server from './server.js';
 import Routes from './routes.js';
+import Db from './db.js';
 
 class Framework {
   
@@ -340,4 +342,4 @@ public/**/*
 }
 
 export default Framework;
-export {Server, Routes};
+export {Server, Routes, Db};
