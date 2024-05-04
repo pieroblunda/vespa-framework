@@ -137,11 +137,18 @@ class Framework {
     console.log(Colors.green('✓') + ' CSS compiled');
     return Promise.all(promisesBag);
   } // compileStylus()
+
+  static compileMedia() {
+    let src = `${global.CLIENT_PATH}/media`;
+    let dest = `${global.PUBLIC_PATH}/media`;
+    Fs.cpSync(src, dest, {recursive: true});
+    console.log(Colors.grey('copyed ') + `${src} ➞ ${dest}/${dest}`);
+  }
   
   static createDirectories() {
     const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
     let tree = [
-      'client/assets',
+      'client/media',
       'client/js',
       'client/styles',
       'client/views',
