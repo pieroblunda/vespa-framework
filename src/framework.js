@@ -8,6 +8,7 @@ import StylusFramework from './stylus-framework.js';
 import Server from './server.js';
 import Routes from './routes.js';
 import Db from './db.js';
+import Crud from './crud.server.model.js';
 
 class Framework {
   
@@ -349,4 +350,4 @@ public/**/*
 }
 
 export default Framework;
-export {Server, Routes, Db};
+export {Server, Routes, Db, Crud};
