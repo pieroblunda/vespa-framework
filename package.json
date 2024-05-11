@@ -5,7 +5,7 @@
   "license": "",
   "private": false,
   "type": "module",
-  "main": "./src/framework.js",
+  "main": "./src/index.js",
   "repository": {
     "url": "git+https://github.com/pieroblunda/vespa-framework.git"
   },
