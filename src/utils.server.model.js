@@ -8,6 +8,8 @@ class Utils {
     return content.version;
   }
 
-}
+  static isDevelopment() {
+    return process.env.NODE_ENV === 'development';
+  }
 
-console.log(Utils.getAppVersion());
+}
