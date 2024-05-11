@@ -7,6 +7,7 @@ import Server from './server.js';
 import Routes from './routes.js';
 import Db from './db.js';
 import Crud from './crud.server.model.js';
+import Utils from './utils.server.model.js';
 
 // const compileStylusMiddleware = StylusVespa.compileMiddleware;
 
@@ -267,4 +268,4 @@ public/**/*
 }
 
 export default Framework;
-export {Server, Routes, Db, Crud, StylusVespa};
+export {Server, Routes, Db, Crud, StylusVespa, Utils};
