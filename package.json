@@ -1,6 +1,6 @@
 {
   "name": "vespa-framework",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "NodeJs minimalist framework",
   "license": "",
   "private": false,
@@ -14,7 +14,7 @@
     "chokidar": "^3.5.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
-    "express": "^4.13.3",
+    "express": "^4.19.2",
     "glob-array": "^1.0.0",
     "mongodb": "^3.6.2",
     "pug": "^3.0.2",

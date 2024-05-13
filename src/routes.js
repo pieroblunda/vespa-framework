@@ -15,7 +15,7 @@ class Routes {
     app.set('views', global.VIEWS_PATH);
     
     // Pretty HTML on dev env
-    app.locals.pretty = process.env.NODE_ENV === 'development';
+    // app.locals.pretty = process.env.NODE_ENV === 'development';
     
     // app.use(BodyParser.json());
     app.use(BodyParser.json({limit: '50mb'}));
