@@ -61,14 +61,13 @@ class StylusVespa {
             };
             resolve(compiled);
             if(parseInt(process.env.VERBOSE)){
-              console.log(Colors.grey('VespaJS compiled ') + `${compiled.src} ➞ ${file.dest}/${file.destFilename}`);
+              console.log(Colors.grey('compiled vespaJs stylus') + `${compiled.src} ➞ ${file.dest}/${file.destFilename}`);
             }
           });
         });
       });
       promisesBag.push(singlePromise);
     });
-    console.log(Colors.green('✓') + ' CSS compiled');
     return Promise.all(promisesBag);
   } // compileStylus()
 

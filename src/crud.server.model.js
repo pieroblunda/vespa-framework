@@ -77,19 +77,24 @@ class Crud {
   /**
   @usage DB.collection().updateOne(document)
   @returns Promise: document (inserted document)
-  @Description finds the doc._id and update it
+  @Description finds a document and update it
+  @Docs https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/
   */
-  static updateOne(doc){
+  static updateOne(filter, doc, options) {
     
     // Default values
-    doc._id = MongoDB.ObjectId(doc._id);
+    // doc._id = MongoDB.ObjectId(doc._id);
     doc.lastUpdate = new Date();
+
+    if(!options) {
+      options = { upsert: true, returnOriginal: false };
+    }
     
     return new Promise( (resolve, reject) => {
       return this.currentCollection.findOneAndUpdate(
-        { _id: doc._id },
+        filter,
         { $set: doc },
-        { upsert: true, returnOriginal: false },
+        options,
         function (error, result) {
           if(error) {
             reject(error);
@@ -100,6 +105,11 @@ class Crud {
         }
       );
     });
+  }
+
+  // This is an alias of updateOne()
+  static save(filter, update, options) {
+    return this.updateOne(filter, update, options);
   }
   
   static async deleteById(_id) {
