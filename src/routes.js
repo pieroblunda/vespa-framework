@@ -3,6 +3,7 @@ import Express from 'express';
 import Colors from 'colors';
 import Cors from 'cors';
 import BodyParser from 'body-parser';
+import compression from 'compression';
 
 class Routes {
   
@@ -18,6 +19,7 @@ class Routes {
     // app.locals.pretty = process.env.NODE_ENV === 'development';
     
     // app.use(BodyParser.json());
+    app.use(compression({level: 9, memLevel: 9}));
     app.use(BodyParser.json({limit: '50mb'}));
     app.use(Cors());
     
