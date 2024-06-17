@@ -4,7 +4,9 @@ class Utils {
 
   static getAppVersion() {
     const FILE_PATH = `${process.cwd()}/package.json`;
-    let content = JSON.parse(Fs.readFileSync(FILE_PATH, 'utf8'));
+    let fsDescriptor = Fs.openSync(FILE_PATH);
+    let content = JSON.parse(Fs.readFileSync(fsDescriptor, 'utf8'));
+    Fs.closeSync(fsDescriptor);
     return content.version;
   }
 

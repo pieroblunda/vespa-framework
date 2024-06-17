@@ -1,4 +1,5 @@
 import Core from './framework.js';
+import Environment from './environment.server.model.js';
 import StylusVespa from './stylus.server.model.js';
 import Server from './server.js';
 import Routes from './routes.js';
@@ -16,7 +17,8 @@ const VespaJs = {
   db: Db,
   crud: Crud,
   utils: Utils,
-  build: Build
+  build: Build,
+  env: Environment
 
 };
 

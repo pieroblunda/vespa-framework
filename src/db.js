@@ -6,8 +6,8 @@ class DB {
     return DbClient.db.databaseName;
   }
 
-  static getStats() {
-    return DbClient.db.stats();
+  static getStats(params) {
+    return DbClient.db.stats(params);
   }
 
   static collection(collectionName) {

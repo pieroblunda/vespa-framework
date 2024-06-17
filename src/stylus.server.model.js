@@ -1,4 +1,5 @@
 import Fs from 'fs';
+import FsGraceful from 'graceful-fs';
 import Stylus from 'stylus';
 import Colors from 'colors';
 import Glob from 'glob-array';
@@ -23,7 +24,9 @@ class StylusVespa {
     });
     
     input.forEach( (file) => {
-      let fileStr = Fs.readFileSync(file.src, "utf8");
+      let fsDescriptor = Fs.openSync(file.src);
+      let fileStr = Fs.readFileSync(fsDescriptor, 'utf8');
+      Fs.closeSync(fsDescriptor);
       let singlePromise = new Promise( (resolve, reject) => {
         Stylus(fileStr)
         .set('filename', file.src)
@@ -48,7 +51,7 @@ class StylusVespa {
           }
 
           file.destFilename = file.destFilename.replace('-src', '');
-          Fs.writeFile(`${file.dest}/${file.destFilename}`, css, function (err) {
+          FsGraceful.writeFile(`${file.dest}/${file.destFilename}`, css, function (err) {
             if (err){
               reject(err);
               return;
@@ -60,9 +63,7 @@ class StylusVespa {
               code: css
             };
             resolve(compiled);
-            if(parseInt(process.env.VERBOSE)){
-              console.log(Colors.grey('compiled vespaJs stylus') + `${compiled.src} ➞ ${file.dest}/${file.destFilename}`);
-            }
+            console.log(Colors.grey('compiled vespaJs stylus') + `${compiled.src} ➞ ${file.dest}/${file.destFilename}`);
           });
         });
       });

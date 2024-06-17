@@ -8,6 +8,8 @@ import Routes from './routes.js';
 import Db from './db.js';
 import Crud from './crud.server.model.js';
 import Utils from './utils.server.model.js';
+import Environment from './environment.server.model.js';
+import Shared from './shared.js';
 
 // const compileStylusMiddleware = StylusVespa.compileMiddleware;
 
@@ -18,17 +20,15 @@ class Framework {
   }
 
   static install() {
+    Environment.setupEnvFile();
     this.createDirectories();
     this.updatePackageJsonOptions();
     this.installMustHaveFiles();
-    this.setupEnvFile();
     this.writeGitKeepFile();
     this.writeGitIgnore();
   }
   
   static init() {
-    this.setupEnvFile();
-    this.loadEnvFile();
     this.createDirectories();
     this.setGlobalsVariables();
     StylusVespa.compileStylus();
@@ -51,13 +51,6 @@ class Framework {
     console.log('---------------------------------------------------------');
     console.log('');
   }
-
-  static loadEnvFile() {
-    // Load file .env in Dev environmet
-    if(!process.env.NODE_ENV) {
-      process.loadEnvFile();
-    }
-  }
   
   static compileJs() {
     const BASE_PATH = process.cwd();
@@ -74,7 +67,7 @@ class Framework {
   }
   
   static createDirectories() {
-    const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
+    const FILE_TEMPLATE_PATH = Shared.getRelativeDirectory();
     let tree = [
       'client/media',
       'client/js',
@@ -102,7 +95,7 @@ class Framework {
   }
 
   static installMustHaveFiles() {
-    const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
+    const FILE_TEMPLATE_PATH = Shared.getRelativeDirectory();
     let files = [
       'app.js',
       '.editorconfig',
@@ -150,33 +143,9 @@ class Framework {
   //     console.log('Compiled:  See the output at ' + output);
   //   });
   // }; // uglifyJs()
-  
-  static setupEnvFile() {
-
-    if (process.env.NODE_ENV === 'production') {
-      return;
-    }
-    return new Promise( (resolve, reject) => {
-
-      const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
-      
-      // Check if the file exists in the current directory.
-      if(!Fs.existsSync(`${process.cwd()}/.env`)) {
-        Fs.copyFileSync(`${FILE_TEMPLATE_PATH}/.env-template`, '.env', Fs.constants.COPYFILE_EXCL);
-        console.log(Colors.green('✓') + ' CHECK THE .env DEFAULTS OPTIONS', Colors.yellow('<==============='));
-      }
-
-      // Check if the file exists in the current directory.
-      if(!Fs.existsSync(`${process.cwd()}/.env-production`)) {
-        Fs.copyFileSync(`${FILE_TEMPLATE_PATH}/.env-production`, '.env-production', Fs.constants.COPYFILE_EXCL);
-        console.log(Colors.green('✓') + ' CHECK THE .env-production DEFAULTS OPTIONS', Colors.yellow('<==============='));
-      }
-    });
-
-  } //createEnvFile()
 
   static writeGitKeepFile() {
-    const FILE_TEMPLATE_PATH = this.getRelativeDirectory();
+    const FILE_TEMPLATE_PATH = Shared.getRelativeDirectory();
     let files = [
       'client/styles',
       'client/views',
@@ -232,8 +201,10 @@ public/**/*
       }
     };
 
-    let fileStr = JSON.parse(Fs.readFileSync('package.json', "utf8"));
+    let fsDescriptor = Fs.openSync('package.json');
+    let fileStr = JSON.parse(Fs.readFileSync(fsDescriptor, "utf8"));
     let updatedContent = JSON.stringify({...fileStr, ...vespaConfig}, null, 2);
+    Fs.closeSync(fsDescriptor);
     Fs.writeFile(`package.json`, updatedContent, (err) => {
       if (err){
         reject(err);
@@ -244,24 +215,6 @@ public/**/*
         console.log(Colors.grey('PackageJson updated ') + `package.json ➞ package.json}`);
       }
     });
-
-  }
-
-  static getRelativeDirectory() {
-    const BASE_PATH = process.cwd();
-    const PACKAGE_PATH = `${BASE_PATH}/node_modules/vespa-framework`;
-    let copyFromNpmPackage = `${PACKAGE_PATH}/files-template`;
-    let copyFromSource = `${BASE_PATH}/files-template`;
-    let copyFrom;
-
-    try {
-      Fs.accessSync( copyFromNpmPackage, Fs.constants.F_OK);
-      copyFrom = copyFromNpmPackage;
-    } catch (e) {
-      copyFrom = copyFromSource;
-    }
-
-    return copyFrom;
 
   }
   
