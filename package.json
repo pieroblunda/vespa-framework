@@ -1,6 +1,6 @@
 {
   "name": "vespa-framework",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "NodeJs minimalist framework",
   "license": "",
   "private": false,

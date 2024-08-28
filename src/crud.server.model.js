@@ -70,6 +70,15 @@ class Crud {
    * @Doc https://www.mongodb.com/docs/drivers/node/current/usage-examples/insertMany/
   */
   static insertMany(docs, options) {
+
+    docs = docs.map( (item) => {
+      if(item._id && typeof item._id === 'string') {
+        item._id = MongoDB.ObjectId(item._id);
+        console.log(item._id);
+      }
+      return item;
+    });
+
     let resutlPromise = this.currentCollection.insertMany(docs, options);
     return this.manageError(resutlPromise);
   }
@@ -83,7 +92,10 @@ class Crud {
   static updateOne(filter, doc, options) {
     
     // Default values
-    // doc._id = MongoDB.ObjectId(doc._id);
+    if(filter._id && typeof filter._id === 'string') {
+      filter._id = MongoDB.ObjectId(filter._id);
+      delete doc._id;
+    }
     doc.lastUpdate = new Date();
 
     if(!options) {
@@ -110,6 +122,20 @@ class Crud {
   // This is an alias of updateOne()
   static save(filter, update, options) {
     return this.updateOne(filter, update, options);
+  }
+
+  static async insertOne(doc) {
+    return new Promise( (resolve, reject) => {
+      this.currentCollection.insertOne(doc, (err, result) => {
+        if(err) {
+          reject(err);
+          return;
+        }
+
+        resolve(result.ops[0]);
+
+      });
+    });
   }
   
   static async deleteById(_id) {
