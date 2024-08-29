@@ -42,6 +42,11 @@ class Test extends Crud {
 }
 ```
 
+## Crud
+```
+Test.bulkUpdate(docsUpdate);
+```
+
 ```javascript
 // En la clase se puede tener acceso a los metodos:
 Test.updateOne({foo: 'bar'}).then( (result) => {

@@ -142,6 +142,10 @@ class Crud {
     let criteria = { _id: MongoDB.ObjectId(_id) };
     return await this.currentCollection.deleteOne(criteria);
   }
+
+  static bulkUpdate(docsUpdate) {
+    return this.currentCollection.bulkWrite(docsUpdate);
+  }
   
   static count(partnerCode) {
     let query = { partnerCode: partnerCode };
