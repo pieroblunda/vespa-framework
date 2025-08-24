@@ -78,3 +78,11 @@ Test.insertMany(docs, options).then( (result) => {
   console.log(result);
 });
 ```
+
+## Global variables 
+
+* global.BASE_PATH: ./
+* global.CLIENT_PATH: ./client
+* global.SERVER_PATH: ./server
+* global.VIEWS_PATH: ./client/views
+* global.PUBLIC_PATH: ./public

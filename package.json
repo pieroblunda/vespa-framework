@@ -1,5 +1,5 @@
 {
-  "name": "test-vespa",
+  "name": "vespa-framework",
   "version": "0.0.1",
   "description": "NodeJs minimalist framework",
   "license": "ISC",
