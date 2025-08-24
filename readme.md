@@ -86,3 +86,7 @@ Test.insertMany(docs, options).then( (result) => {
 * global.SERVER_PATH: ./server
 * global.VIEWS_PATH: ./client/views
 * global.PUBLIC_PATH: ./public
+
+## Compatibility with technical-debt-cli
+
+https://github.com/pieroblunda/technical-debt-cli

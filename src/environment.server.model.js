@@ -9,6 +9,7 @@ class Environment {
     if(!process.env.NODE_ENV) {
       process.loadEnvFile();
     }
+    console.log(Colors.green('✓') + ' Env file loaded');
   }
 
   static setupEnvFile() {

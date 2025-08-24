@@ -15,23 +15,23 @@ class Server {
     console.log('Starting server');
     console.log('=============================================================');
     console.log('Config NODE_ENV:', process.env.NODE_ENV);
-    // Framework.setupEnvFile();
-    // Framework.createDirectories();
-    // Framework.setGlobalsVariables();
-    // Framework.compileStyusFramework();
-    // Framework.compileStylus();
     Framework.watchJs();
-    // Framework.watchStylus();
     Routes.init();
     addCustomRoutes();
     Routes.app.use(Routes.defaultRoute);
     
-    await DbClient.connect(process.env.CONNECTION_STRING);
-    console.log(Colors.green('✓') + ' Connected to DB');
+    /*
+    try {
+      await DbClient.connect(process.env.CONNECTION_STRING);
+      console.log(Colors.green('✓') + ' Connected to DB');
+    } catch (e) {
+      console.log(e);
+    }
+    */
     
     return new Promise( (resolve, reject) => {
       Routes.app.listen(process.env.PORT, () => {
-        console.log(Colors.green('✓') + ' Server started');
+        console.log(Colors.green('✓') + ' Server started on port ' + process.env.PORT);
         this.onAfterStart();
         resolve(this);
       });
