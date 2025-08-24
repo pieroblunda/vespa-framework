@@ -9,7 +9,6 @@ import Utils from './utils.server.model.js';
 import Build from './build.js';
 
 const VespaJs = {
-
   core: Core,
   stylus: StylusVespa,
   server: Server,
@@ -19,7 +18,6 @@ const VespaJs = {
   utils: Utils,
   build: Build,
   env: Environment
-
 };
 
 export default VespaJs;

@@ -1,0 +1,19 @@
+{
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "debug": "node --inspect-brk app.js",
+    "staging": "node --env-file=.env-production app.js",
+    "build": "node node_modules/vespa-framework/src/build.js",
+    "qr": "node app.js default-partner --qr",
+    "fixtures": "node app.js --fixtures"
+  },
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
+  },
+  "dependencies": {
+    "vespa-framework": "^0.0.19"
+  }
+}

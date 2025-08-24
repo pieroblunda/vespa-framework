@@ -1,4 +1,5 @@
 import Fs from 'fs';
+import Colors from 'colors';
 import Shared from './shared.js';
 
 class Environment {
@@ -37,5 +38,3 @@ class Environment {
 }
 
 export default Environment;
-
-Environment.load();

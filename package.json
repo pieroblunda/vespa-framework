@@ -1,8 +1,8 @@
 {
-  "name": "vespa-framework",
-  "version": "0.0.19",
+  "name": "test-vespa",
+  "version": "0.0.1",
   "description": "NodeJs minimalist framework",
-  "license": "",
+  "license": "ISC",
   "private": false,
   "type": "module",
   "main": "./src/index.js",
@@ -22,5 +22,14 @@
     "pug": "^3.0.3",
     "stylus": "^0.63.0",
     "technical-debt-cli": "^2.2.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "Piero Blunda",
+  "bugs": {
+    "url": "https://github.com/pieroblunda/vespa-framework/issues"
+  },
+  "homepage": "https://github.com/pieroblunda/vespa-framework#readme"
 }

@@ -22,13 +22,14 @@ class Framework {
   static install() {
     Environment.setupEnvFile();
     this.createDirectories();
-    this.updatePackageJsonOptions();
     this.installMustHaveFiles();
+    this.updatePackageJsonOptions();
     this.writeGitKeepFile();
     this.writeGitIgnore();
   }
   
   static init() {
+    Environment.load();
     this.createDirectories();
     this.setGlobalsVariables();
     StylusVespa.compileStylus();
@@ -174,7 +175,6 @@ coverage
 reports/**/*
 public/**/*
 !**/*.gitkeep
-!public/media/favicon.ico
 *.log
 *.DS_Store`;
     Fs.writeFileSync(`.gitignore`, content);
