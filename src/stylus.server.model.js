@@ -1,5 +1,4 @@
 import Fs from 'fs';
-import FsGraceful from 'graceful-fs';
 import Stylus from 'stylus';
 import Colors from 'colors';
 import Glob from 'glob-array';
@@ -51,7 +50,7 @@ class StylusVespa {
           }
 
           file.destFilename = file.destFilename.replace('-src', '');
-          FsGraceful.writeFile(`${file.dest}/${file.destFilename}`, css, function (err) {
+          Fs.writeFile(`${file.dest}/${file.destFilename}`, css, function (err) {
             if (err){
               reject(err);
               return;
