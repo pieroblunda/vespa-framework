@@ -101,6 +101,7 @@ class Framework {
       'app.js',
       '.editorconfig',
       'readme.md',
+      'client/views/page-404.pug',
       'server/models/routes.server.model.js',
       'server/controllers/example.server.controller.js',
       'server/middlewares/example.server.middleware.js'
