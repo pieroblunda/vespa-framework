@@ -95,6 +95,7 @@ https://github.com/pieroblunda/technical-debt-cli
 ## External libraries
 
 | Package | Description |
+|---|---|
 | [body-parser](https://www.npmjs.com/package/) | Node.js body parsing middleware. |
 | [Chokidar](https://www.npmjs.com/package/chokidar) | Watch stylus files to compile on change | 
 | [Colors](https://www.npmjs.com/package/colors) | Color terminal stdout | 
