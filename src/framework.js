@@ -104,6 +104,7 @@ class Framework {
       'railway.json',
       'client/views/page-404.pug',
       'client/styles/test.styl',
+      'client/styles/stylus-framework-src.styl',
       'server/models/routes.server.model.js',
       'server/controllers/example.server.controller.js',
       'server/middlewares/example.server.middleware.js'

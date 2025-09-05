@@ -10,6 +10,8 @@ class MyRoutes {
     
     app.get('/', exampleController.renderHome);
 
+    app.get('/health', exampleController.renderHealth);
+
     app.use( (req, res, next) => {
       res.status(404);
 
