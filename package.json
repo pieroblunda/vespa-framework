@@ -1,6 +1,6 @@
 {
   "name": "vespa-framework",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NodeJs minimalist framework",
   "license": "ISC",
   "private": false,
@@ -17,13 +17,11 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "glob-array": "^1.0.0",
-    "graceful-fs": "^4.2.11",
     "mongodb": "^3.6.2",
     "pug": "^3.0.3",
     "stylus": "^0.63.0",
     "technical-debt-cli": "^2.2.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "npm run test"
   },

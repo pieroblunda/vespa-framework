@@ -90,3 +90,19 @@ Test.insertMany(docs, options).then( (result) => {
 ## Compatibility with technical-debt-cli
 
 https://github.com/pieroblunda/technical-debt-cli
+
+
+## External libraries
+
+| Package | Description |
+| [body-parser](https://www.npmjs.com/package/) | Node.js body parsing middleware. |
+| [Chokidar](https://www.npmjs.com/package/chokidar) | Watch stylus files to compile on change | 
+| [Colors](https://www.npmjs.com/package/colors) | Color terminal stdout | 
+| [Compression](https://www.npmjs.com/package/compression) | Node.js compression middleware |
+| [Cors](https://www.npmjs.com/package/cors)| Node.js cors middleware |
+| [Express](https://www.npmjs.com/package/express) | Fast, unopinionated, minimalist Node.js web framework |
+| [Glob Array](https://www.npmjs.com/package/glob-array) | Allow use glob patters. Used in stylus projects |
+| [MongoDb](https://www.npmjs.com/package/mongodb) | The official MongoDB driver for Node.js. Used only in MondoDb Projects |
+| [Pug](https://www.npmjs.com/package/pug) | HTML preprocessor | 
+| [Stylus](https://www.npmjs.com/package/stylus) | CSS preprocessor. Used only in stylus projects |
+| [Technical Debt cli](https://www.npmjs.com/package/technical-debt-cli) | Read debt from te terminal |
