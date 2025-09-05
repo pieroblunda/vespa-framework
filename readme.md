@@ -79,6 +79,11 @@ Test.insertMany(docs, options).then( (result) => {
 });
 ```
 
+## Test supper
+```bash
+$ npm --test
+```
+
 ## Global variables 
 
 * global.BASE_PATH: ./
