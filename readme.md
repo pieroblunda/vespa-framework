@@ -96,6 +96,11 @@ $ npm --test
 
 https://github.com/pieroblunda/technical-debt-cli
 
+## Tracing
+
+> --trace-deprecations --trace-warnings
+
+> npm run start package.json
 
 ## External libraries
 
