@@ -4,6 +4,10 @@ export function renderHome(req, res) {
   res.send('It works!');
 }
 
+export function renderLanding(req, res) {
+  res.render('block-landing', {});
+}
+
 export function renderHealth(req, res) {
   res.json({status: 'ok'});
 }

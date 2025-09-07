@@ -103,6 +103,8 @@ class Framework {
       'readme.md',
       'railway.json',
       'client/views/page-404.pug',
+      'client/views/main.pug',
+      'client/views/block-landing.pug',
       'client/styles/styles-src.styl',
       'client/styles/stylus-framework-src.styl',
       'server/models/routes.server.model.js',
