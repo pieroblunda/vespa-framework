@@ -2,7 +2,7 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node --trace-deprecations --trace-warnings app.js",
     "debug": "node --inspect-brk app.js",
     "staging": "node --env-file=.env-production app.js",
     "build": "node node_modules/vespa-framework/src/build.js",
