@@ -201,7 +201,8 @@ public/**/*
         build: 'node node_modules/vespa-framework/src/build.js',
         // prod: 'heroku local -e .env.prod',
         qr: 'node app.js default-partner --qr',
-        fixtures: 'node app.js --fixtures'
+        fixtures: 'node app.js --fixtures',
+        coverage: 'node --test --experimental-test-coverage'
       },
       engines: {
         // http://vercel.link/node-version

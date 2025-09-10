@@ -128,6 +128,12 @@ https://github.com/pieroblunda/technical-debt-cli
 
 > npm run start package.json
 
+## Code coverage
+
+```bash
+node --run coverage 
+```
+
 ## External libraries
 
 | Package | Description |
