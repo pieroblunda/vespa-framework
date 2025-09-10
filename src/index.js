@@ -7,6 +7,7 @@ import Db from './db.js';
 import Crud from './crud.server.model.js';
 import Utils from './utils.server.model.js';
 import Build from './build.js';
+import SQLite from './sqlite.server.model.js';
 
 const VespaJs = {
   core: Core,
@@ -17,8 +18,10 @@ const VespaJs = {
   crud: Crud,
   utils: Utils,
   build: Build,
-  env: Environment
+  env: Environment,
+  SQLite: SQLite
 };
 
 export default VespaJs;
 export {Crud};
+export {SQLite};
