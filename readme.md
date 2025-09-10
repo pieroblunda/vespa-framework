@@ -134,6 +134,14 @@ https://github.com/pieroblunda/technical-debt-cli
 node --run coverage 
 ```
 
+## Run scripts
+
+```bash
+node --run help
+```
+
+> Available scripts will be shown in terminal
+
 ## External libraries
 
 | Package | Description |
