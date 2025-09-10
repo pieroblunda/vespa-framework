@@ -4,6 +4,7 @@ import Colors from 'colors';
 import Cors from 'cors';
 import BodyParser from 'body-parser';
 import compression from 'compression';
+import * as utilsController from './utils.server.controller.js';
 
 class Routes {
   
@@ -33,6 +34,8 @@ class Routes {
     }
 
     app.use(this.errorHandler);
+
+    app.get('/releases-notes', utilsController.renderReleasesNotes);
     
     this.app = app;
   }

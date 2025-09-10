@@ -142,6 +142,14 @@ node --run help
 
 > Available scripts will be shown in terminal
 
+## Default routes
+
+| Package | Description |
+|---|---|
+| /releases-notes | Render il contenuto del file releases-note.md senza formattazione |
+
+> NOTE: El usuario podria por motivos de SEO queres desactivar esta funcionalidad
+
 ## External libraries
 
 | Package | Description |
