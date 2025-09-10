@@ -92,6 +92,32 @@ $ npm --test
 * global.VIEWS_PATH: ./client/views
 * global.PUBLIC_PATH: ./public
 
+## SQLite support
+
+Setear la variable de entorno SQL_DATABASE_PATH
+
+| Variable | Example | Default |
+|---|---|---|
+| SQL_DATABASE_PATH | /Users/myuser/Sites/my-project-folder/database.db | global.BASE_PATH |
+
+
+> [Note]
+> La variable es opcional. Por defecto la base de datos se almacena en el directorio raiz de la aplicacion.
+
+**Usage**
+
+```javascript
+import {SQLite} from 'vespa-framework';
+
+SQLite.exec();
+```
+
+```javascript
+import VespaJs from 'vespa-framework';
+
+VespaJs.SQLite.exec();
+```
+
 ## Compatibility with technical-debt-cli
 
 https://github.com/pieroblunda/technical-debt-cli
@@ -101,6 +127,20 @@ https://github.com/pieroblunda/technical-debt-cli
 > --trace-deprecations --trace-warnings
 
 > npm run start package.json
+
+## Code coverage
+
+```bash
+node --run coverage 
+```
+
+## Run scripts
+
+```bash
+node --run help
+```
+
+> Available scripts will be shown in terminal
 
 ## External libraries
 

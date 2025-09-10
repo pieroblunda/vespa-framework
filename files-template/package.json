@@ -10,6 +10,7 @@
     "staging": "node --env-file=.env-production app.js",
     "build": "node node_modules/vespa-framework/src/build.js",
     "test": "npm --test",
+    "coverage": "--test --experimental-test-coverage",
     "qr": "node app.js default-partner --qr",
     "fixtures": "node app.js --fixtures"
   },
