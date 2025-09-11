@@ -10,6 +10,8 @@ import Crud from './crud.server.model.js';
 import Utils from './utils.server.model.js';
 import Environment from './environment.server.model.js';
 import Shared from './shared.js';
+import packageJsonTemplate from '../files-template/package.json' with { type: 'json' };
+import packageJsonData from '../package.json' with { type: 'json' };
 
 // const compileStylusMiddleware = StylusVespa.compileMiddleware;
 
@@ -215,7 +217,7 @@ public/**/*
 
     let fsDescriptor = Fs.openSync('package.json');
     let fileStr = JSON.parse(Fs.readFileSync(fsDescriptor, "utf8"));
-    let updatedContent = JSON.stringify({...fileStr, ...vespaConfig}, null, 2);
+    let updatedContent = JSON.stringify({...packageJsonData, ...packageJsonTemplate}, null, 2);
     Fs.closeSync(fsDescriptor);
     Fs.writeFile(`package.json`, updatedContent, (err) => {
       if (err){
