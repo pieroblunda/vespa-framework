@@ -129,18 +129,20 @@ https://github.com/pieroblunda/technical-debt-cli
 
 > --trace-deprecations --trace-warnings
 
-> npm run start package.json
+```bash
+$ node --run start package.json
+```
 
 ## Code coverage
 
 ```bash
-node --run coverage 
+$ node --run coverage 
 ```
 
 ## Run scripts
 
 ```bash
-node --run help
+$ node --run help
 ```
 
 > Available scripts will be shown in terminal
@@ -150,6 +152,7 @@ node --run help
 | Package | Description |
 |---|---|
 | /releases-notes | Render il contenuto del file releases-note.md senza formattazione |
+| /health | Render a health page |
 
 > NOTE: El usuario podria por motivos de SEO queres desactivar esta funcionalidad
 
