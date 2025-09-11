@@ -168,3 +168,7 @@ node --run help
 | [Pug](https://www.npmjs.com/package/pug) | HTML preprocessor | 
 | [Stylus](https://www.npmjs.com/package/stylus) | CSS preprocessor. Used only in stylus projects |
 | [Technical Debt cli](https://www.npmjs.com/package/technical-debt-cli) | Read debt from te terminal |
+
+## Contribuiting guidelines
+
+[Link](https://opensource.guide/)
