@@ -3,5 +3,6 @@ import Fs from 'node:fs';
 
 export function renderReleasesNotes(req, res) {
   let data = Fs.readFileSync(`${global.BASE_PATH}/releases-notes.md`);
+  res.type('text/plain');
   res.send(data);
 }

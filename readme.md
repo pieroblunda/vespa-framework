@@ -98,11 +98,14 @@ Setear la variable de entorno SQL_DATABASE_PATH
 
 | Variable | Example | Default |
 |---|---|---|
-| SQL_DATABASE_PATH | /Users/myuser/Sites/my-project-folder/database.db | global.BASE_PATH |
+| SQL_DATABASE_PATH | [absolute-path]/database.db | global.BASE_PATH |
 
 
 > [Note]
-> La variable es opcional. Por defecto la base de datos se almacena en el directorio raiz de la aplicacion.
+> La variable es opcional. Por defecto la base de datos se almacena `global.BASE_PATH/database.db`
+
+> ![IMPORTANT]
+> Para usar la funcion node:sqlite la variable `useSQLite` en el archivo `vespa-config.json` tiene que estar seteada en `true`
 
 **Usage**
 
@@ -126,18 +129,20 @@ https://github.com/pieroblunda/technical-debt-cli
 
 > --trace-deprecations --trace-warnings
 
-> npm run start package.json
+```bash
+$ node --run start package.json
+```
 
 ## Code coverage
 
 ```bash
-node --run coverage 
+$ node --run coverage 
 ```
 
 ## Run scripts
 
 ```bash
-node --run help
+$ node --run help
 ```
 
 > Available scripts will be shown in terminal
@@ -147,6 +152,7 @@ node --run help
 | Package | Description |
 |---|---|
 | /releases-notes | Render il contenuto del file releases-note.md senza formattazione |
+| /health | Render a health page |
 
 > NOTE: El usuario podria por motivos de SEO queres desactivar esta funcionalidad
 
@@ -165,3 +171,7 @@ node --run help
 | [Pug](https://www.npmjs.com/package/pug) | HTML preprocessor | 
 | [Stylus](https://www.npmjs.com/package/stylus) | CSS preprocessor. Used only in stylus projects |
 | [Technical Debt cli](https://www.npmjs.com/package/technical-debt-cli) | Read debt from te terminal |
+
+## Contribuiting guidelines
+
+[Link](https://opensource.guide/)
