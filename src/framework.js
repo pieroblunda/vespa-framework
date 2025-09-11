@@ -112,6 +112,7 @@ class Framework {
       'server/models/calculator.server.model.js',
       'server/controllers/example.server.controller.js',
       'server/middlewares/example.server.middleware.js',
+      'scripts/build.js',
       'test/calculator.unit.test.js'
 
     ];
