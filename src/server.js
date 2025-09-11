@@ -19,6 +19,13 @@ class Server {
     Routes.init();
     addCustomRoutes();
     Routes.app.use(Routes.defaultRoute);
+
+    const { default: VespaOptions } = await import(`${global.BASE_PATH}/vespa-config.json`, { with: { type: 'json' } });
+
+    if(VespaOptions.useSQLite) {
+      const SQlite = await import('./sqlite.server.model.js');
+      SQlite.default.connect();
+    }
     
     /*
     try {

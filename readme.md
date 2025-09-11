@@ -98,11 +98,14 @@ Setear la variable de entorno SQL_DATABASE_PATH
 
 | Variable | Example | Default |
 |---|---|---|
-| SQL_DATABASE_PATH | /Users/myuser/Sites/my-project-folder/database.db | global.BASE_PATH |
+| SQL_DATABASE_PATH | [absolute-path]/database.db | global.BASE_PATH |
 
 
 > [Note]
-> La variable es opcional. Por defecto la base de datos se almacena en el directorio raiz de la aplicacion.
+> La variable es opcional. Por defecto la base de datos se almacena `global.BASE_PATH/database.db`
+
+> ![IMPORTANT]
+> Para usar la funcion node:sqlite la variable `useSQLite` en el archivo `vespa-config.json` tiene que estar seteada en `true`
 
 **Usage**
 

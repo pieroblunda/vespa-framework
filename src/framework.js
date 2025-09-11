@@ -102,6 +102,7 @@ class Framework {
       '.editorconfig',
       'readme.md',
       'railway.json',
+      'vespa-config.json',
       'client/views/page-404.pug',
       'client/views/main.pug',
       'client/views/block-landing.pug',
