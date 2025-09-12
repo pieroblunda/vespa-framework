@@ -3,12 +3,12 @@ import StylusVespa from './stylus.server.model.js';
 
 class Build {
   
-  static run() {
+  static async run() {
     console.log('Building...');
     Framework.setGlobalsVariables();
     Framework.compileJs();
     Framework.compileMedia();
-    StylusVespa.compileStylus();
+    await StylusVespa.compileStylus();
     console.log('Build done!');
   }
   

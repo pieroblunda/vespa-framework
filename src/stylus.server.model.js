@@ -1,7 +1,6 @@
-import Fs from 'fs';
 import Stylus from 'stylus';
 import Colors from 'colors';
-import Glob from 'glob-array';
+import Fs from 'node:fs';
 import Chokidar from 'chokidar';
 
 
@@ -57,12 +56,13 @@ class StylusVespa {
             }
             
             let compiled = {
-              src: file.src,
-              dest: file.dest.replace(`${process.env.BASE_PATH}/`, ''),
+              src: file.src.replace(global.BASE_PATH, ''),
+              dest: file.dest.replace(global.BASE_PATH, ''),
               code: css
             };
+            console.log(Colors.yellow(compiled.dest));
+            console.log(Colors.grey('compiled stylus') + ` ${compiled.src} ➞ ${compiled.dest}/${file.destFilename}`);
             resolve(compiled);
-            console.log(Colors.grey('compiled vespaJs stylus') + `${compiled.src} ➞ ${file.dest}/${file.destFilename}`);
           });
         });
       });
@@ -77,7 +77,7 @@ class StylusVespa {
       `${global.CLIENT_PATH}/styles/*-src.styl`
     ];
     let globOptions = {};
-    return Glob.sync(patterns, globOptions);
+    return Fs.globSync(patterns, globOptions);
   }
 
   static watchStylus() {

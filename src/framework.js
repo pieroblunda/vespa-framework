@@ -1,6 +1,5 @@
 import Fs from 'fs';
 import Colors from 'colors';
-import Glob from 'glob-array';
 
 import StylusVespa from './stylus.server.model.js';
 import Server from './server.js';
@@ -66,7 +65,7 @@ class Framework {
     let src = `${global.CLIENT_PATH}/media`;
     let dest = `${global.PUBLIC_PATH}/media`;
     Fs.cpSync(src, dest, {recursive: true});
-    console.log(Colors.grey('copyed ') + `${src} ➞ ${dest}/${dest}`);
+    console.log(Colors.grey('copyed ') + `${src} ➞ ${dest}`);
   }
   
   static createDirectories() {
