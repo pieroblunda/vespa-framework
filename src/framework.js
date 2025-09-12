@@ -1,6 +1,5 @@
 import Fs from 'fs';
 import Colors from 'colors';
-import Glob from 'glob-array';
 
 import StylusVespa from './stylus.server.model.js';
 import Server from './server.js';
@@ -10,6 +9,8 @@ import Crud from './crud.server.model.js';
 import Utils from './utils.server.model.js';
 import Environment from './environment.server.model.js';
 import Shared from './shared.js';
+import packageJsonTemplate from '../files-template/package.json' with { type: 'json' };
+import packageJsonData from '../package.json' with { type: 'json' };
 
 // const compileStylusMiddleware = StylusVespa.compileMiddleware;
 
@@ -64,7 +65,7 @@ class Framework {
     let src = `${global.CLIENT_PATH}/media`;
     let dest = `${global.PUBLIC_PATH}/media`;
     Fs.cpSync(src, dest, {recursive: true});
-    console.log(Colors.grey('copyed ') + `${src} ➞ ${dest}/${dest}`);
+    console.log(Colors.grey('copyed ') + `${src} ➞ ${dest}`);
   }
   
   static createDirectories() {
@@ -215,7 +216,7 @@ public/**/*
 
     let fsDescriptor = Fs.openSync('package.json');
     let fileStr = JSON.parse(Fs.readFileSync(fsDescriptor, "utf8"));
-    let updatedContent = JSON.stringify({...fileStr, ...vespaConfig}, null, 2);
+    let updatedContent = JSON.stringify({...packageJsonData, ...packageJsonTemplate}, null, 2);
     Fs.closeSync(fsDescriptor);
     Fs.writeFile(`package.json`, updatedContent, (err) => {
       if (err){

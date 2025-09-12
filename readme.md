@@ -1,5 +1,9 @@
 # Vespa Framework
 
+## Requirements
+
+* node v24
+
 ## Install
 ```
 $ npm install vespa-framework
@@ -166,7 +170,6 @@ $ node --run help
 | [Compression](https://www.npmjs.com/package/compression) | Node.js compression middleware |
 | [Cors](https://www.npmjs.com/package/cors)| Node.js cors middleware |
 | [Express](https://www.npmjs.com/package/express) | Fast, unopinionated, minimalist Node.js web framework |
-| [Glob Array](https://www.npmjs.com/package/glob-array) | Allow use glob patters. Used in stylus projects |
 | [MongoDb](https://www.npmjs.com/package/mongodb) | The official MongoDB driver for Node.js. Used only in MondoDb Projects |
 | [Pug](https://www.npmjs.com/package/pug) | HTML preprocessor | 
 | [Stylus](https://www.npmjs.com/package/stylus) | CSS preprocessor. Used only in stylus projects |
