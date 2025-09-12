@@ -64,6 +64,9 @@ body
   font-size 4rem
 ```
 
+> ![IMPORTANT]
+> Documentar como hacer para escribir CSS sin usar un preprocessor
+
 ## Funcionalidades
 
 ```
