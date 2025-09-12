@@ -2,6 +2,71 @@ extends main.pug
 block content
 
   //- Que es?
+  section.hero.d-flex.vertical-align
+    .container
+      .row.gutted.text-center
+        .col
+          //- img.logo(src="/public/media/logo-pregoon.svg")
+          h1 Escalabilidad como servicio<br>
+            small para web&nbsp;agencies
+          //- p.text-large Consigue mas clientes
+          p.text-large No pierdas ventas
+
+          //- a.btn-primary(href="/es-ES/editor") CTA
+          //- img.img-fluid(src="/public/media/ventas.png")
+
+
   //- Que problema resuelve?
-  section
-    h1 This is a title
+  //- ok: Retrasos
+  //- ok: Cuellos de botella
+  //- ok: Costos altos
+  //- ok: Dificultad para gestionar RRHH tecnicos
+  //- ok: Poco automation
+  //- ok: Sin resultados tecnicos ideales (100%)
+  section.neck
+    .container
+      .row.d-flex.container
+        .col.text-center
+          h2 Adiós a retrasos y cuellos de botella
+          p.text-large No es magia, es ingenieria.
+
+      .row.d-flex.gutted.step-1.vertical-align
+        .col.text-container
+          h3
+            small Sin desarrolladores
+            | Produce 5 veces mas rapido, sin interrupciones
+          p El servicio no-code te permitirà de controlar la delivery. Hay un minimo de intervención humana para el control de calidad y la maxima personalización.
+        .col
+          img.img-fluid(src="/public/media/puzzle.png")
+
+
+      .row.d-flex.gutted.step-2.v-align
+        .col.order-2
+          img.img-fluid(src="public/media/automation.png")
+        .col.order-1
+          h3
+            small Sin botellas, no hay cuellos
+            | 95% de automation
+          p Los problemas de escalabilidad estan resueltos de raiz. Todos los procesos estan pensados para ser escalables y automaticos. La escalabilidad un pilar del servicio.
+      
+      .row.d-flex.gutted.step-2.v-align
+        .col
+          h3
+            small Plug-in de escalabilidad
+            | Transparente al usuario
+          p Todos los procesos se optimizan sin ningun impacto para cliente. La tecnologia se aplica en una capa superior que es invisible para el usuario.
+        .col
+          img.img-fluid(src="/public/media/happy-users.png")
+
+
+  section.integrations
+    .container
+      h2.text-center Preguntas frecuentes
+      //- p.text-center {{ 'landing.faq.p' | translate }}
+      .row.d-flex
+        .col
+          p Si hay intervencion humana entonces, se pueden generar cuellos de botella? Los cuellos de botella se producen siempre sobre los recursos escasos o limitantes. Los recursos limitantes estan automatizados y los recursos recursos manuales es hoy la parte creativa. El equipo que hace realidad el deseo de los consumidores, creace a la par que crece la demanda. Hoy no existen cuellos de botella.
+
+  footer.text-center
+    br
+    br

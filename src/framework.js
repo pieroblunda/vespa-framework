@@ -87,7 +87,7 @@ class Framework {
       'server/models',
       'server/controllers',
       'server/middlewares',
-      'test',
+      'test'
     ];
     for (var i = 0; i < tree.length; i++) {
       if(!Fs.existsSync(tree[i])) {
@@ -114,13 +114,34 @@ class Framework {
       'client/styles/file-1.styl',
       'client/styles/file-2.styl',
       'client/styles/example-src.styl',
+      'client/styles/theme-src.styl',
+      'client/media/puzzle.png',
+      'client/media/automation.png',
+      'client/media/happy-users.png',
+      'client/media/hero-background.svg',
+      'client/media/lines-background.svg',
+      'client/media/building-basic.svg',
+      'client/media/cart-shopping-solid.svg',
+      'client/media/file-regular.svg',
+      'client/media/newspaper-basic.svg',
+      'client/media/newspaper-solid.svg',
+      'client/media/rss-basic.svg',
+      'client/media/separator-2.svg',
+      'client/media/separator-3.svg',
+      'client/media/separator-4.svg',
+      'client/media/separator-5.svg',
+      'client/media/separator-6.svg',
+      'client/media/separator-7.svg',
+      'client/media/separator-8.svg',
+      'client/media/separator-bottom-1.svg',
+      'client/media/table-solid.svg',
+      'client/media/wordpress.svg',
       'server/models/routes.server.model.js',
       'server/models/calculator.server.model.js',
       'server/controllers/example.server.controller.js',
       'server/middlewares/example.server.middleware.js',
       'scripts/build.js',
-      'test/calculator.unit.test.js'
-
+      'test/calculator.unit.test.js',
     ];
     for (var i = 0; i < files.length; i++) {
       if(!Fs.existsSync(files[i])) {
