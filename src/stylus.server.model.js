@@ -12,12 +12,10 @@ class StylusVespa {
     
     let input = this.searchStylusFiles();
     input = input.map((item) => {
-      let dirPathArr = item.replace(global.CLIENT_PATH, global.PUBLIC_PATH).split('/');
-      let targetForlder = dirPathArr.slice(0, -1).join('/');
       return {
         src: item,
-        dest: targetForlder,
-        destFilename: dirPathArr.at(-1).replace('.styl', '.min.css')
+        dest: `${global.PUBLIC_PATH}/css`,
+        destFilename: item.split('/').at(-1).replace('.styl', '.min.css')
       };
     });
     
@@ -60,7 +58,6 @@ class StylusVespa {
               dest: file.dest.replace(global.BASE_PATH, ''),
               code: css
             };
-            console.log(Colors.yellow(compiled.dest));
             console.log(Colors.grey('compiled stylus') + ` ${compiled.src} ➞ ${compiled.dest}/${file.destFilename}`);
             resolve(compiled);
           });

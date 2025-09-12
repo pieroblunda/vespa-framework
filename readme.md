@@ -11,6 +11,59 @@ $ node node_modules/vespa-framework/src/install.js
 $ node app.js
 ```
 
+## CSS & Preprocessors
+
+VespaJs soporta stylus como preprocessor.
+
+Con el comando `$ node --run build` el sistema busca todos las hojas de estilo ubicados en `client/styles`. Cada archivo con el sufijo `-src.styl` generara un archivo nuevo en la carpeta `public/css`.
+
+```bash
+/my-project
+  ├── package.json
+  └── client
+      └── styles
+          ├── main-src.styl     
+          ├── file-1.styl
+          ├── file-2.styl 
+          └── example.styl
+
+```
+
+Compiles to
+
+```bash
+/my-project
+  ├── package.json
+  └── public
+      └── css
+          ├── main.min.css
+          └── example.min.css
+
+```
+
+Di default, el sistema inyecta un `reset.css`. Para evitarlo, basta comentar la linea 1 del archivo `main-src-.styl` de esta manera
+
+```diff
+- @require './../../node_modules/vespa-framework/src/stylus-framework-src.styl';
+@require 'file-1.styl'
+@require 'file-2.styl'
+
+body
+  font-size 4rem
+```
+
+Para mantener el codigo limpio, y estructurar las hojas de estilo de manera modular se puede agregar un nuevo archivo (sin el sufijo `-src`) e incluirlo como parte del archivo `main-src.styl` de esta manera
+
+```diff
+@require './../../node_modules/vespa-framework/src/stylus-framework-src.styl';
+@require 'file-1.styl'
+@require 'file-2.styl'
++@require 'file-3.styl'
+
+body
+  font-size 4rem
+```
+
 ## Funcionalidades
 
 ```

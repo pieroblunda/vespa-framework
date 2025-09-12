@@ -1,13 +1,14 @@
 import Fs from 'fs';
 import Colors from 'colors';
 
-import StylusVespa from './stylus.server.model.js';
-import Server from './server.js';
-import Routes from './routes.js';
-import Db from './db.js';
+import Build from './build.js';
 import Crud from './crud.server.model.js';
-import Utils from './utils.server.model.js';
+import Db from './db.js';
 import Environment from './environment.server.model.js';
+import Server from './server.js';
+import StylusVespa from './stylus.server.model.js';
+import Routes from './routes.js';
+import Utils from './utils.server.model.js';
 import Shared from './shared.js';
 import packageJsonTemplate from '../files-template/package.json' with { type: 'json' };
 import packageJsonData from '../package.json' with { type: 'json' };
@@ -27,6 +28,7 @@ class Framework {
     this.updatePackageJsonOptions();
     this.writeGitKeepFile();
     this.writeGitIgnore();
+    Build.run();
   }
   
   static init() {
@@ -108,7 +110,10 @@ class Framework {
       'client/views/page-404.pug',
       'client/views/main.pug',
       'client/views/block-landing.pug',
-      'client/styles/styles-src.styl',
+      'client/styles/main-src.styl',
+      'client/styles/file-1.styl',
+      'client/styles/file-2.styl',
+      'client/styles/example-src.styl',
       'server/models/routes.server.model.js',
       'server/models/calculator.server.model.js',
       'server/controllers/example.server.controller.js',

@@ -23,7 +23,8 @@
     "technical-debt-cli": "^2.2.0"
   },
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "build": "node scripts/build.js"
   },
   "author": "Piero Blunda",
   "bugs": {
